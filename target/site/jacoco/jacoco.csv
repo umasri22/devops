@@ -1,0 +1,18 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Vaadin Addressbook example,com.edurekademo.utilities,GenericComparator,165,181,34,18,37,39,26,13,3,9
+Vaadin Addressbook example,com.edurekademo.utilities,PropertyLoader,116,0,22,0,28,0,15,0,4,0
+Vaadin Addressbook example,com.edurekademo.utilities,HexAsciiConvertor,6,71,0,8,4,19,0,7,0,3
+Vaadin Addressbook example,com.edurekademo.utilities,LoggerStackTraceUtil,43,67,7,3,10,12,6,3,1,3
+Vaadin Addressbook example,com.edurekademo.utilities,PropertyHelper,76,0,4,0,28,0,8,0,6,0
+Vaadin Addressbook example,com.edurekademo.utilities,CaseInsensitiveComparator,128,87,14,6,23,23,12,4,2,4
+Vaadin Addressbook example,com.edurekademo.utilities,GenericComparator.new Object() {...},26,0,0,0,1,0,1,0,1,0
+Vaadin Addressbook example,com.edurekademo.utilities,PrepareTargetMethod,23,0,0,0,4,0,2,0,2,0
+Vaadin Addressbook example,com.edurekademo.utilities,StringUtilities,281,0,38,0,57,0,25,0,6,0
+Vaadin Addressbook example,com.edurekademo.utilities,GenericComparator.CompareMode,9,49,0,0,0,1,2,2,2,2
+Vaadin Addressbook example,com.edurekademo.tutorial.addressbook,AddressbookUI.MyUIServlet,3,0,0,0,1,0,1,0,1,0
+Vaadin Addressbook example,com.edurekademo.tutorial.addressbook,AddressbookUI,216,0,0,0,42,0,9,0,9,0
+Vaadin Addressbook example,com.edurekademo.tutorial.addressbook,ContactForm,195,0,4,0,40,0,9,0,7,0
+Vaadin Addressbook example,com.edurekademo.helper,GenericResourceBundle,29,0,4,0,10,0,4,0,2,0
+Vaadin Addressbook example,com.edurekademo.tutorial.addressbook.backend,ContactService,375,0,16,0,46,0,15,0,7,0
+Vaadin Addressbook example,com.edurekademo.tutorial.addressbook.backend,Contact,103,0,0,0,27,0,15,0,15,0
+Vaadin Addressbook example,com.edurekademo.tutorial.addressbook.backend,ContactService.new Comparator() {...},15,0,0,0,2,0,2,0,2,0
