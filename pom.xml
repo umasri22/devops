@@ -19,7 +19,7 @@
             <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     </properties>
 
-    <repositories>
+   <repositories>
         <repository>
             <id>vaadin-prereleases</id>
             <name>Vaadin Pre-releases</name>
