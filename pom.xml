@@ -18,7 +18,6 @@
     <sonar.coverage.jacoco.xmlReportPaths>target/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
             <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     </properties>
-
    <repositories>
         <repository>
             <id>vaadin-prereleases</id>
