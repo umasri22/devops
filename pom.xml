@@ -19,6 +19,7 @@
     </properties>
    <repositories>
         <repository>
+		
             <id>vaadin-prereleases</id>
             <name>Vaadin Pre-releases</name>
             <url>https://maven.vaadin.com/vaadin-prereleases</url>
