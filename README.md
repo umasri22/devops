@@ -1,10 +1,11 @@
 Addressbook Tutorial.
-commit1.
+
 =========================
 commit1
 commit4.
 commit3.
 commit2.
+
 This tutorial teaches you some of the basic concepts in [Vaadin Framework](https://vaadin.com). It is meant to be
 a fast read for learning how to get started - not an example on how application should be
 designed. Please note this example uses and requires Java 8 to work.
