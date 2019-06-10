@@ -289,7 +289,6 @@
                             <format>xml</format>
                             <!-- CPD options -->
                             <minimumTokens>20</minimumTokens>
-                            <!--<ignoreIdentifiers>true</ignoreIdentifiers>-->
                             <failOnViolation>true</failOnViolation>
                             <failurePriority>2</failurePriority>
                         </configuration>
@@ -344,19 +343,10 @@
                                     <artifactId>maven-project-info-reports-plugin</artifactId>
                                     <version>2.7</version>
                                 </plugin>
-                               <!-- <plugin>
-                                    <groupId>org.jacoco</groupId>
-                                    <artifactId>jacoco-maven-plugin</artifactId>
-                                    <version>0.7.2.201409121644</version>
-                                </plugin>
-								-->
                                 <plugin>
                                     <groupId>org.apache.maven.plugins</groupId>
                                     <artifactId>maven-checkstyle-plugin</artifactId>
                                     <version>3.0.1</version>
-                                    <!--<configuration>-->
-                                    <!--<configLocation>gol-checkstyle.xml</configLocation>-->
-                                    <!--</configuration>-->
                                 </plugin>
                                 <plugin>
                                     <groupId>org.apache.maven.plugins</groupId>
