@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ <?xml version="1.0" encoding="UTF-8"?> 
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.edurekademo.tutorial</groupId>
     <artifactId>addressbook</artifactId>
     <packaging>war</packaging>
     <version>2.0</version>
-    <name>Vaadin Addressbook example</name>
-
-	
-    <properties>
+    <name>Vaadin Addressbook example</name>	 
+	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <vaadin.version>8.0.0.alpha2</vaadin.version>
@@ -19,9 +17,9 @@
     <sonar.coverage.jacoco.xmlReportPaths>target/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
             <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     </properties>
-
-    <repositories>
+   <repositories>
         <repository>
+		
             <id>vaadin-prereleases</id>
             <name>Vaadin Pre-releases</name>
             <url>https://maven.vaadin.com/vaadin-prereleases</url>
@@ -125,6 +123,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+	    
 
 
 		<!-- COMMONS -->
