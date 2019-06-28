@@ -5,13 +5,7 @@ pipeline {
             steps {
                 bat 'mvn -DskipTests clean package'
             }
-        }
-        stage('Test') {
-            steps {
-                bat 'mvn test'
-            }
-        
-            post {
+             post {
                  success {
                     junit 'target/surefire-reports/*.xml'
                     hygieiaArtifactPublishStep artifactDirectory: 'target', artifactGroup: 'com.addressbook', artifactName: 'addressbook.war', artifactVersion: '2'
@@ -24,6 +18,14 @@ pipeline {
                 
             }
         }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        
+           
+        }
+        
         
     }
 }
