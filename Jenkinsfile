@@ -17,19 +17,18 @@ pipeline {
         
            
         }  
-
-		stage('Deploy'){
+ 	stage('Deploy'){
 		steps{
 		
-			bat 'COPY "target\\addressbook.war" env.TOMCAT_HOME+"\\webapps\\addressbook.war"'
+			bat 'COPY "target\\addressbook.war" env.TOMCAT_HOME\\"\\webapps\\addressbook.war"'
 		}
-		}
-	    stage('Inegration Test'){
+	}
+	 stage('Inegration Test'){
 		    steps{
 		    git branch: 'QA', url: 'https://github.com/IATVirtusa/devops.git'
 		    bat 'mvn test'
 		    }
-	    }
+	 }
     }
     post {
                  success {
