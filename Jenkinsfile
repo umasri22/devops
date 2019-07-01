@@ -24,6 +24,12 @@ pipeline {
 			bat 'COPY "target\\addressbook.war" "${TOMCAT_HOME}\\webapps\\addressbook.war"'
 		}
 		}
+	    stage('Inegration Test'){
+		    steps{
+		    git branch: 'QA', url: 'https://github.com/IATVirtusa/devops.git'
+		    bat 'mvn test'
+		    }
+	    }
     }
     post {
                  success {
