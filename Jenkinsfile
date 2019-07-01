@@ -20,7 +20,7 @@ pipeline {
 
 		stage('Deploy'){
 		steps{
-		bat 'COPY target/addressbook.war env.TOMCAT_HOME\\webapps\\'
+		bat 'COPY target/addressbook.war env.TOMCAT_HOME\\webapps'
 		}
 		}
     }
