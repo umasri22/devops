@@ -21,7 +21,7 @@ pipeline {
 		stage('Deploy'){
 		steps{
 		
-		bat 'COPY "target\\addressbook.war" "C:\\SW\\apache-tomcat-9.0.1\\apache-tomcat-9.0.1\\webapps\\addressbook.war"'
+			bat 'COPY "target\\addressbook.war" "${TOMCAT_HOME}\\webapps\\addressbook.war"'
 		}
 		}
     }
