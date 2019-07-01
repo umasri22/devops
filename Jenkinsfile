@@ -15,11 +15,11 @@ pipeline {
            
         }  
 
-		stage('Deploy')
+		stage('Deploy'){
 		steps{
 		bat 'copy target/addressbook.war %TOMCAT_HOME%/webapps/'
 		}
-		
+		}
     }
     post {
                  success {
