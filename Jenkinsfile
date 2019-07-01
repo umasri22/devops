@@ -4,20 +4,21 @@ pipeline {
        TOMCAT_HOME = 'C:\\SW\\apache-tomcat-9.0.1\\apache-tomcat-9.0.1'
    }
     stages {
-        stage('Build') {
+	      stage('UnitTest') {
+            steps {
+                bat 'mvn test'
+            }
+        
+            } 
+       
+	    stage('Build') {
             steps {
                 bat 'mvn -DskipTests clean package'
             }
              
         }
-        stage('Test') {
-            steps {
-                bat 'mvn test'
-            }
-        
-           
-        }  
- 	stage('Deploy'){
+       
+ 	stage('Deploy Dev'){
 		steps{
 		
 			bat 'COPY "target\\addressbook.war" "C:\\SW\\apache-tomcat-9.0.1\\apache-tomcat-9.0.1\\webapps\\addressbook.war"'
