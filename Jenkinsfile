@@ -14,6 +14,7 @@ pipeline {
         
            
         }  
+
 		stage('Deploy')
 		steps{
 		bat 'copy target/addressbook.war %TOMCAT_HOME%\webapps\'
