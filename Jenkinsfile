@@ -1,5 +1,8 @@
 pipeline {
     agent any
+	environment {
+       TOMCAT_HOME = 'C:\SW\apache-tomcat-9.0.1\apache-tomcat-9.0.1\'
+   }
     stages {
         stage('Build') {
             steps {
@@ -17,7 +20,7 @@ pipeline {
 
 		stage('Deploy'){
 		steps{
-		bat 'copy target/addressbook.war %TOMCAT_HOME%/webapps/'
+		bat 'COPY target/addressbook.war env.TOMCAT_HOME/webapps/'
 		}
 		}
     }
