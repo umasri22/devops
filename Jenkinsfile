@@ -1,7 +1,7 @@
 pipeline {
     agent any
 	environment {
-       TOMCAT_HOME = 'C:\\SW\apache-tomcat-9.0.1\\apache-tomcat-9.0.1\\'
+       TOMCAT_HOME = 'C:\\SW\\apache-tomcat-9.0.1\\apache-tomcat-9.0.1\\'
    }
     stages {
         stage('Build') {
