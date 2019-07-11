@@ -18,12 +18,7 @@ pipeline {
              
         }
        
- 	stage('Deploy Dev'){
-		steps{
-		
-			bat 'COPY "target\\addressbook.war" "C:\\SW\\apache-tomcat-9.0.1\\apache-tomcat-9.0.1\\webapps\\addressbook.war"'
-		}
-	}
+ 	
 	 stage('Inegration Test'){
 		    steps{
 		    git branch: 'QA', url: 'https://github.com/IATVirtusa/devops.git'
