@@ -19,13 +19,7 @@ pipeline {
         }
        
  	
-	 stage('Inegration Test'){
-		    steps{
-		    git branch: 'QA', url: 'https://github.com/IATVirtusa/devops.git'
-		    bat 'mvn test'
-	            step([$class: 'Publisher', reportFilenamePattern: 'test-output/testng-results.xml'])
-		    }
-	 }
+	
     }
     post {
                  success {
