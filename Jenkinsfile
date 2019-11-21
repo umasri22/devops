@@ -87,7 +87,7 @@ pipeline {
                     version: '1.0.0-SNAPSHOT',
                     extension: 'zip',
                     //stagingRepository: 'http://nexus.myorg.com:8080/content/repositories/release-candidates',
-                    stagingRepository: 'http://34.93.7.213:8081/repository/maven-snapshots'
+                    stagingRepository: 'http://34.93.7.213:8081/repository/maven-snapshots',
                     stagingUser: 'admin',
                     stagingPW: 'admin123',
                     skipDeletion: true,
