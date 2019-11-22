@@ -73,8 +73,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing'
-                sh 'mvn test'
+                echo 'Testing - Dummy Stage'
+                //sh 'mvn test'
             }
         }
         stage('Artifact Promotion') {
