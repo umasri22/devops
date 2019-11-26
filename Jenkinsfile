@@ -12,7 +12,8 @@ pipeline {
                 echo 'Clean Build'
                     sh "ls"
                     sh "pwd"
-                    sh "mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=testprojkey1 -Dsonar.organization=rakesh635-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=820f2c6d75600559bd4c27dbc572be2cedcf2ae6"  
+                    sh "mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=employee_jdbc -Dsonar.host.url=http://35.244.62.220/ -Dsonar.login=aac7cc7809ddc82ce0070e3f74726c71216936b6"
+                    //sh 'mvn clean compile' 
             }
         }
         stage('Package') {
@@ -65,7 +66,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'curl --upload-file target/addressbook.war "http://tomcat:password@35.200.135.60:8081/manager/text/deploy?path=/hello&update=true"'
+                sh 'curl --upload-file target/addressbook.war "http://tomcat:password@35.200.166.99:8081/manager/text/deploy?path=/hello&update=true"'
                 //withCredentials([usernamePassword(credentialsId: 'nexusadmin', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 //    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
                 //}
@@ -108,7 +109,7 @@ pipeline {
         // This can be http or https
         NEXUS_PROTOCOL = "http"
         // Where your Nexus is running
-        NEXUS_URL = "35.244.49.94:8081"
+        NEXUS_URL = "34.93.73.51:8081"
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "maven-snapshots"
         // Jenkins credential id to authenticate to Nexus OSS
