@@ -74,7 +74,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing - Dummy Stage'
-                //sh 'mvn test'
+                sh 'mvn test'
             }
         }
         stage('Artifact Promotion') {
