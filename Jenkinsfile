@@ -1,12 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('checkout') {
-            steps {
-                echo 'checkout'
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/rakesh635/devops.git']]])
-            }
-        }
+        
         stage('Build') {
             steps {
                 echo 'Clean Build'
@@ -98,8 +93,8 @@ pipeline {
                     releaseUser: 'admin',
                     releasePW: 'admin123'
                 )
-            }*/
-        }
+            }
+        }*/
     }
     tools {
         maven 'maven3.3.9'
