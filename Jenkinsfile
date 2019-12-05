@@ -1,18 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('checkout') {
+        /*stage('checkout') {
             steps {
                 echo 'checkout'
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/rakesh635/devops.git']]])
             }
-        }
+        }*/
         stage('Build') {
             steps {
                 echo 'Clean Build'
                     sh "ls"
                     sh "pwd"
-                    sh "mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=employee_jdbc -Dsonar.host.url=http://35.244.62.220/ -Dsonar.login=aac7cc7809ddc82ce0070e3f74726c71216936b6"
+                    sh "mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=employee_jdbc -Dsonar.host.url=http://10.62.125.4:8085/ -Dsonar.login=f16fabd2605044f38e79e4c0e4bc5f73c55dd144"
+                    //sh "mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=employee_jdbc -Dsonar.host.url=http://35.244.62.220/ -Dsonar.login=aac7cc7809ddc82ce0070e3f74726c71216936b6"
                     //sh 'mvn clean compile' 
             }
         }
@@ -66,7 +67,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'curl --upload-file target/addressbook.war "http://tomcat:password@35.200.166.99:8081/manager/text/deploy?path=/hello&update=true"'
+                sh 'curl --upload-file target/addressbook.war "http://tomcat:password@10.62.125.4:8083/manager/text/deploy?path=/addressbook&update=true"'
                 //withCredentials([usernamePassword(credentialsId: 'nexusadmin', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 //    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
                 //}
@@ -78,7 +79,7 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Artifact Promotion') {
+        /*stage('Artifact Promotion') {
             steps {
                 artifactPromotion (
                     promoterClass: 'org.jenkinsci.plugins.artifactpromotion.NexusOSSPromotor',
@@ -96,7 +97,7 @@ pipeline {
                     releaseUser: 'admin',
                     releasePW: 'admin123'
                 )
-            }
+            }*/
         }
     }
     tools {
@@ -109,7 +110,7 @@ pipeline {
         // This can be http or https
         NEXUS_PROTOCOL = "http"
         // Where your Nexus is running
-        NEXUS_URL = "34.93.73.51:8081"
+        NEXUS_URL = "10.62.125.4:8084"
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "maven-snapshots"
         // Jenkins credential id to authenticate to Nexus OSS
