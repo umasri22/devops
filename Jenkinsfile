@@ -69,19 +69,30 @@ pipeline {
                 //}
             }
         }
-        stage('Test Script Checkout')
+        stage('Test Script Checkout and Execution')
         {
            agent { label 'windows' }
-            steps {
-                 checkout([  
-                    $class: 'GitSCM', 
-                    branches: [[name: 'refs/heads/master']], 
-                    doGenerateSubmoduleConfigurations: false, 
-                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'helloworld-selenium']], 
-                    submoduleCfg: [], 
-                    userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://github.com/rakesh635/helloworld-selenium.git']]
-                ])
-            } 
+            stages {
+                stage("Checkout") {
+                    steps {
+                         checkout([  
+                            $class: 'GitSCM', 
+                            branches: [[name: 'refs/heads/master']], 
+                            doGenerateSubmoduleConfigurations: false, 
+                            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'helloworld-selenium']], 
+                            submoduleCfg: [], 
+                            userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://github.com/rakesh635/helloworld-selenium.git']]
+                        ])
+                    } 
+                }
+                stage("Test Execution") {
+                    steps {
+                        echo 'Testing - Dummy Stage'
+                        sh 'mvn --version'
+                    } 
+                }
+            }
+            
         }
         stage('Test') {
             agent { label 'windows' }
