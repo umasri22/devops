@@ -69,6 +69,20 @@ pipeline {
                 //}
             }
         }
+        stage('Test Script Checkout')
+        {
+           agent { label 'windows' }
+            steps {
+                 checkout([  
+                    $class: 'GitSCM', 
+                    branches: [[name: 'refs/heads/master']], 
+                    doGenerateSubmoduleConfigurations: false, 
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'helloworld-selenium']], 
+                    submoduleCfg: [], 
+                    userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://github.com/rakesh635/helloworld-selenium.git']]
+                ])
+            } 
+        }
         stage('Test') {
             agent { label 'windows' }
             steps {
