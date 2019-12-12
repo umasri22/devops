@@ -70,9 +70,10 @@ pipeline {
             }
         }
         stage('Test') {
+            agent { label 'windows' }
             steps {
                 echo 'Testing - Dummy Stage'
-                sh 'mvn test'
+                sh 'mvn --version'
             }
         }
         /*stage('Artifact Promotion') {
