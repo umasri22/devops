@@ -136,6 +136,7 @@ pipeline {
     
     post {
         always {
+            agent { label 'windows' }
             echo 'JENKINS PIPELINE'
             dir('bdd') {
              cucumber buildStatus: 'UNSTABLE',
