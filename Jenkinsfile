@@ -78,34 +78,70 @@ pipeline {
                             $class: 'GitSCM', 
                             branches: [[name: 'refs/heads/master']], 
                             doGenerateSubmoduleConfigurations: false, 
-                            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'bdd']], 
+                            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'web']], 
                             submoduleCfg: [], 
                             userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/bdd.git']]
                         ])
+                        checkout([  
+                            $class: 'GitSCM', 
+                            branches: [[name: 'refs/heads/master']], 
+                            doGenerateSubmoduleConfigurations: false, 
+                            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'api']], 
+                            submoduleCfg: [], 
+                            userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/IATVirtusa/APITests.git']]
+                        ])
                     } 
                 }
-                stage("Smoke Test") {
+                stage("Web Smoke Test") {
                     steps {
-                        dir('bdd') {
+                        dir('web') {
                         echo 'Testing Stage'
                         bat 'mvn test -Dcucumber.option="--tags @smoke'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
                         }
                     } 
                 }
-                stage("Feature Test") {
+                stage("API Smoke Test") {
                     steps {
-                        dir('bdd') {
+                        dir('api') {
                         echo 'Testing Stage'
-                        bat 'mvn test -Dcucumber.option="--tags @sanity'
+                        bat 'mvn test -Dcucumber.option="--tags @smoke'
+                        bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
+                        }
+                    } 
+                }
+                /*stage("Web Feature Test") {
+                    steps {
+                        dir('web') {
+                        echo 'Testing Stage'
+                        bat 'mvn test -Dcucumber.option="--tags @feature'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-sanity.json'
                         bat 'del /f target\\cucumber-reports\\Cucumber.json'
                         }
                     }
                 }
+                stage("API Feature Test") {
+                    steps {
+                        dir('api') {
+                        echo 'Testing Stage'
+                        bat 'mvn test -Dcucumber.option="--tags @feature'
+                        bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-sanity.json'
+                        bat 'del /f target\\cucumber-reports\\Cucumber.json'
+                        }
+                    }
+                }*/
                 stage("Regression Test") {
                     steps {
-                        dir('bdd') {
+                        dir('web') {
+                        echo 'Testing Stage'
+                        bat 'mvn test'
+                        bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
+                        }
+                    }
+                }
+                stage("API Regression Test") {
+                    steps {
+                        dir('api') {
                         echo 'Testing Stage'
                         bat 'mvn test'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
@@ -122,6 +158,7 @@ pipeline {
                         }
                     }
                 }*/
+                
                 stage("Cucumber-report view") {
                     steps {
                         cucumber buildStatus: 'UNSTABLE',
