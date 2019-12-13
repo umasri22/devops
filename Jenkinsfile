@@ -9,7 +9,6 @@ pipeline {
             stages {
 
                 stage("Cucumber-report view") {
-                    agent { label 'windows' }
                     steps {
                         cucumber buildStatus: 'UNSTABLE',
                             failedFeaturesNumber: 1,
@@ -20,7 +19,7 @@ pipeline {
                                     [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
                                     [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
                             ],
-                            fileIncludePattern: 'target\\cucumber-reports\\*.json',
+                            fileIncludePattern: '**/*.json',
                             sortingMethod: 'ALPHABETICAL',
                             trendsLimit: 100   
                     }
