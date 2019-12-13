@@ -89,7 +89,7 @@ pipeline {
                     steps {
                         dir('bdd') {
                         echo 'Testing Stage'
-                        bat 'mvn test'
+                        bat 'mvn clean test'
                         cucumber buildStatus: 'UNSTABLE',
                         failedFeaturesNumber: 1,
                         failedScenariosNumber: 1,
