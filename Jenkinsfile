@@ -21,8 +21,11 @@ pipeline {
                 }
                 stage("Test Execution") {
                     steps {
+                        dir('bdd') {
                         echo 'Testing - Dummy Stage'
-                        bat 'D:\\workspace\\workspace\\addressbook\\bdd mvn test'
+                        sh 'pwd'
+                        bat 'mvn test'
+                        }
                     } 
                 }
             }     
