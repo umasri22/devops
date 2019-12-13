@@ -1,6 +1,7 @@
 pipeline {
     agent { label 'master' }
-    
+    stages {
+        
         stage('Test Script Checkout and Execution')
         {
            agent { label 'windows' }
@@ -55,7 +56,7 @@ pipeline {
                         }
                     }
                 }*/
-               
+                
                 stage("API Regression Test") {
                     steps {
                         dir('api') {
