@@ -22,9 +22,7 @@ pipeline {
                 stage("Test Execution") {
                     steps {
                         echo 'Testing - Dummy Stage'
-                        sh 'cd /d/workspace/workspace/addressbook'
-                        sh 'pwd'
-                        sh 'mvn --version'
+                        bat 'D:\\workspace\\workspace\\addressbook\\bdd mvn test'
                     } 
                 }
             }     
