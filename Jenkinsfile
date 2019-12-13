@@ -69,6 +69,19 @@ pipeline {
     post {
         always {
             echo 'JENKINS PIPELINE'
+             cucumber buildStatus: 'UNSTABLE',
+                failedFeaturesNumber: 1,
+                failedScenariosNumber: 1,
+                skippedStepsNumber: 1,
+                failedStepsNumber: 1,
+                classifications: [
+                        [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
+                        [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
+                ],
+                fileIncludePattern: '**/*.json',
+                sortingMethod: 'ALPHABETICAL',
+                trendsLimit: 100
+            }
         }
         success {
             echo 'JENKINS PIPELINE SUCCESSFUL'
