@@ -79,7 +79,7 @@ pipeline {
                             $class: 'GitSCM', 
                             branches: [[name: 'refs/heads/master']], 
                             doGenerateSubmoduleConfigurations: false, 
-                            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'helloworld-selenium']], 
+                            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'bdd']], 
                             submoduleCfg: [], 
                             userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/bdd.git']]
                         ])
@@ -88,18 +88,12 @@ pipeline {
                 stage("Test Execution") {
                     steps {
                         echo 'Testing - Dummy Stage'
+                        sh 'cd bdd'
+                        sh 'pwd'
                         sh 'mvn --version'
                     } 
                 }
-            }
-            
-        }
-        stage('Test') {
-            agent { label 'windows' }
-            steps {
-                echo 'Testing - Dummy Stage'
-                sh 'mvn --version'
-            }
+            }     
         }
         /*stage('Artifact Promotion') {
             steps {
