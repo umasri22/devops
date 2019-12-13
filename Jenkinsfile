@@ -90,6 +90,18 @@ pipeline {
                         dir('bdd') {
                         echo 'Testing Stage'
                         bat 'mvn test'
+                        cucumber buildStatus: 'UNSTABLE',
+                        failedFeaturesNumber: 1,
+                        failedScenariosNumber: 1,
+                        skippedStepsNumber: 1,
+                        failedStepsNumber: 1,
+                        classifications: [
+                                [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
+                                [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
+                        ],
+                        fileIncludePattern: 'target/cucumber-reports/Cucumber.json',
+                        sortingMethod: 'ALPHABETICAL',
+                        trendsLimit: 100
                         }
                     } 
                 }
@@ -136,22 +148,7 @@ pipeline {
     
     post {
         always {
-            agent { label 'windows' }
             echo 'JENKINS PIPELINE'
-            dir('bdd') {
-             cucumber buildStatus: 'UNSTABLE',
-                failedFeaturesNumber: 1,
-                failedScenariosNumber: 1,
-                skippedStepsNumber: 1,
-                failedStepsNumber: 1,
-                classifications: [
-                        [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
-                        [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
-                ],
-                fileIncludePattern: 'target/cucumber-reports/Cucumber.json',
-                sortingMethod: 'ALPHABETICAL',
-                trendsLimit: 100
-            }
         }
         success {
             echo 'JENKINS PIPELINE SUCCESSFUL'
