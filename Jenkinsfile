@@ -78,7 +78,7 @@ pipeline {
                             $class: 'GitSCM', 
                             branches: [[name: 'refs/heads/master']], 
                             doGenerateSubmoduleConfigurations: false, 
-                            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'web']], 
+                            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'bdd']], 
                             submoduleCfg: [], 
                             userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/bdd.git']]
                         ])
@@ -94,7 +94,7 @@ pipeline {
                 }
                 stage("Web Smoke Test") {
                     steps {
-                        dir('web') {
+                        dir('bdd') {
                         echo 'Testing Stage'
                         bat 'mvn test -Dcucumber.option="--tags @smoke'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
@@ -132,7 +132,7 @@ pipeline {
                 }*/
                 stage("Regression Test") {
                     steps {
-                        dir('web') {
+                        dir('bdd') {
                         echo 'Testing Stage'
                         bat 'mvn test'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
