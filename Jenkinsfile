@@ -84,7 +84,6 @@ pipeline {
                 fileIncludePattern: '**/*.json',
                 sortingMethod: 'ALPHABETICAL',
                 trendsLimit: 100
-            }
         }
         success {
             echo 'JENKINS PIPELINE SUCCESSFUL'
