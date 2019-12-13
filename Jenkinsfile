@@ -93,16 +93,7 @@ pipeline {
                         }
                     } 
                 }
-                stage("Regression Test") {
-                    steps {
-                        dir('bdd') {
-                        echo 'Testing Stage'
-                        bat 'mvn test'
-                        bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
-                        }
-                    }
-                }
-                stage("Sanity Test") {
+                stage("Feature Test") {
                     steps {
                         dir('bdd') {
                         echo 'Testing Stage'
@@ -112,6 +103,25 @@ pipeline {
                         }
                     }
                 }
+                stage("Regression Test") {
+                    steps {
+                        dir('bdd') {
+                        echo 'Testing Stage'
+                        bat 'mvn test'
+                        bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
+                        }
+                    }
+                }
+                /*stage("Sanity Test") {
+                    steps {
+                        dir('bdd') {
+                        echo 'Testing Stage'
+                        bat 'mvn test -Dcucumber.option="--tags @sanity'
+                        bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-sanity.json'
+                        bat 'del /f target\\cucumber-reports\\Cucumber.json'
+                        }
+                    }
+                }*/
                 stage("Cucumber-report view") {
                     steps {
                         cucumber buildStatus: 'UNSTABLE',
