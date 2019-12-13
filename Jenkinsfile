@@ -9,6 +9,7 @@ pipeline {
             stages {
 
                 stage("Cucumber-report view") {
+                    agent { label 'windows' }
                     steps {
                         cucumber buildStatus: 'UNSTABLE',
                             failedFeaturesNumber: 1,
