@@ -81,7 +81,7 @@ pipeline {
                             doGenerateSubmoduleConfigurations: false, 
                             extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'helloworld-selenium']], 
                             submoduleCfg: [], 
-                            userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://github.com/rakesh635/helloworld-selenium.git']]
+                            userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/bdd.git']]
                         ])
                     } 
                 }
