@@ -105,7 +105,7 @@ pipeline {
                     steps {
                         dir('api') {
                         echo 'Testing Stage'
-                        bat 'mvn test -Dcucumber.option="--tags @smoke'
+                        bat 'mvn clean test -Dcucumber.option="--tags @smoke'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
                         }
                     } 
@@ -143,7 +143,7 @@ pipeline {
                     steps {
                         dir('api') {
                         echo 'Testing Stage'
-                        bat 'mvn test'
+                        bat 'mvn clean test'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
                         }
                     }
