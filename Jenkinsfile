@@ -85,12 +85,32 @@ pipeline {
                         ])
                     } 
                 }
-                stage("Test Execution") {
+                stage("Smoke Test") {
                     steps {
                         dir('bdd') {
                         echo 'Testing Stage'
-                        bat 'mvn clean test'
-                        cucumber buildStatus: 'UNSTABLE',
+                        bat 'mvn test -Dcucumber.option="--tags @smoke'
+                        }
+                    } 
+                }
+                stage("Regression Test") {
+                    steps {
+                        dir('bdd') {
+                        echo 'Testing Stage'
+                        bat 'mvn test'
+                        }
+                    }
+                }
+                stage("Sanity Test") {
+                    steps {
+                        dir('bdd') {
+                        echo 'Testing Stage'
+                        bat 'mvn test -Dcucumber.option="--tags @sanity'
+                        }
+                    }
+                }
+                stage("Cucumber-report view") {
+                    cucumber buildStatus: 'UNSTABLE',
                         failedFeaturesNumber: 1,
                         failedScenariosNumber: 1,
                         skippedStepsNumber: 1,
@@ -101,9 +121,7 @@ pipeline {
                         ],
                         fileIncludePattern: 'target/cucumber-reports/Cucumber.json',
                         sortingMethod: 'ALPHABETICAL',
-                        trendsLimit: 100
-                        }
-                    } 
+                        trendsLimit: 100   
                 }
             }     
         }
