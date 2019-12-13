@@ -131,6 +131,38 @@ pipeline {
                 }
             }     
         }
+        stage('Release and publish artifact') {
+            when {
+                // check if branch is master
+                branch 'master'
+            }
+            steps {
+                // create the release version then create a tage with it , then push to nexus releases the released jar
+                script {
+                    if (currentBuild.result == null || currentBuild.result == 'SUCCESS') {
+                        def v = getReleaseVersion()
+                        releasedVersion = v;
+                        if (v) {
+                            echo "Building version ${v} - so released version is ${releasedVersion}"
+                        }
+                        withCredentials([usernamePassword(credentialsId: 'githubtoken', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        sh("git tag -a v${v} -m 'Jenkins'")
+                        sh "git config --list"
+                        sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/rakesh635/devops.git --tags')
+                        }
+                            //sh "git tag -f v${v}"
+                            //sh "git config --list"
+                            //sh "git push -f --tags"
+                            //sh "git push origin --tags"
+                        //sh "mvn -Dmaven.test.skip=true  versions:set  -DgenerateBackupPoms=false -DnewVersion=${v}"
+                        //sh "mvn -Dmaven.test.skip=true clean deploy"
+
+                    } else {
+                        error "Release is not possible. as build is not successful"
+                    }
+                }
+            }
+        }
         /*stage('Artifact Promotion') {
             steps {
                 artifactPromotion (
@@ -187,4 +219,60 @@ pipeline {
             echo 'JENKINS PIPELINE STATUS HAS CHANGED SINCE LAST EXECUTION'
         }
     }
+}
+def developmentArtifactVersion = ''
+def releasedVersion = ''
+// get change log to be send over the mail
+@NonCPS
+def getChangeString() {
+    MAX_MSG_LEN = 100
+    def changeString = ""
+
+    echo "Gathering SCM changes"
+    def changeLogSets = currentBuild.changeSets
+    for (int i = 0; i < changeLogSets.size(); i++) {
+        def entries = changeLogSets[i].items
+        for (int j = 0; j < entries.length; j++) {
+            def entry = entries[j]
+            truncated_msg = entry.msg.take(MAX_MSG_LEN)
+            changeString += " - ${truncated_msg} [${entry.author}]\n"
+        }
+    }
+
+    if (!changeString) {
+        changeString = " - No new changes"
+    }
+    return changeString
+}
+
+def sendEmail(status) {
+    mail(
+            to: "$EMAIL_RECIPIENTS",
+            subject: "Build $BUILD_NUMBER - " + status + " (${currentBuild.fullDisplayName})",
+            body: "Changes:\n " + getChangeString() + "\n\n Check console output at: $BUILD_URL/console" + "\n")
+}
+
+def getDevVersion() {
+    def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+    def versionNumber;
+    if (gitCommit == null) {
+        versionNumber = env.BUILD_NUMBER;
+    } else {
+        versionNumber = gitCommit.take(8);
+    }
+    print 'build  versions...'
+    print versionNumber
+    return versionNumber
+}
+
+def getReleaseVersion() {
+    def pom = readMavenPom file: 'pom.xml'
+    def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+    def versionNumber;
+    if (gitCommit == null) {
+        versionNumber = env.BUILD_NUMBER;
+    } else {
+        versionNumber = gitCommit.take(8);
+    }
+    return pom.version.replace("-SNAPSHOT", ".${versionNumber}")
 }
