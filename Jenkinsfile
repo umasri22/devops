@@ -90,6 +90,7 @@ pipeline {
                         dir('bdd') {
                         echo 'Testing Stage'
                         bat 'mvn test -Dcucumber.option="--tags @smoke'
+                        bat 'copy Cucumber.json Cucumber-smoke.json'
                         }
                     } 
                 }
@@ -98,6 +99,7 @@ pipeline {
                         dir('bdd') {
                         echo 'Testing Stage'
                         bat 'mvn test'
+                        bat 'copy Cucumber.json Cucumber-regression.json'
                         }
                     }
                 }
@@ -106,6 +108,8 @@ pipeline {
                         dir('bdd') {
                         echo 'Testing Stage'
                         bat 'mvn test -Dcucumber.option="--tags @sanity'
+                        bat 'copy Cucumber.json Cucumber-sanity.json'
+                        bat 'del /f Cucumber.json'
                         }
                     }
                 }
@@ -119,7 +123,7 @@ pipeline {
                                 [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
                                 [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
                         ],
-                        fileIncludePattern: 'target/cucumber-reports/Cucumber.json',
+                        fileIncludePattern: 'target/cucumber-reports/*.json',
                         sortingMethod: 'ALPHABETICAL',
                         trendsLimit: 100   
                 }
