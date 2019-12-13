@@ -90,7 +90,7 @@ pipeline {
                         dir('bdd') {
                         echo 'Testing Stage'
                         bat 'mvn test -Dcucumber.option="--tags @smoke'
-                        bat 'copy Cucumber.json Cucumber-smoke.json'
+                        bat 'copy target\cucumber-reports\Cucumber.json target\cucumber-reports\Cucumber-smoke.json'
                         }
                     } 
                 }
@@ -99,7 +99,7 @@ pipeline {
                         dir('bdd') {
                         echo 'Testing Stage'
                         bat 'mvn test'
-                        bat 'copy Cucumber.json Cucumber-regression.json'
+                        bat 'copy target\cucumber-reports\Cucumber.json target\cucumber-reports\Cucumber-regression.json'
                         }
                     }
                 }
@@ -108,7 +108,7 @@ pipeline {
                         dir('bdd') {
                         echo 'Testing Stage'
                         bat 'mvn test -Dcucumber.option="--tags @sanity'
-                        bat 'copy Cucumber.json Cucumber-sanity.json'
+                        bat 'copy target\cucumber-reports\Cucumber.json target\cucumber-reports\Cucumber-sanity.json'
                         bat 'del /f Cucumber.json'
                         }
                     }
