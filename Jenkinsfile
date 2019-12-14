@@ -130,7 +130,7 @@ pipeline {
                         }
                     }
                 }*/
-                stage("Regression Test") {
+                stage("WEB Regression Test") {
                     steps {
                         dir('bdd') {
                         echo 'Testing Stage'
