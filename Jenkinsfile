@@ -106,7 +106,7 @@ pipeline {
                         dir('api') {
                         echo 'Testing Stage'
                         bat 'mvn clean test -Dcucumber.option="--tags @smoke'
-                        //bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
+                        bat 'copy target\\surefire-reports\\com.virtusa.qa.api.product.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\API-smoke.json'
                         }
                     } 
                 }
@@ -125,7 +125,7 @@ pipeline {
                         dir('api') {
                         echo 'Testing Stage'
                         bat 'mvn test -Dcucumber.option="--tags @feature'
-                        bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-sanity.json'
+                        bat 'copy target\\surefire-reports\\com.virtusa.qa.api.product.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\API-feature.json'
                         bat 'del /f target\\cucumber-reports\\Cucumber.json'
                         }
                     }
@@ -144,7 +144,7 @@ pipeline {
                         dir('api') {
                         echo 'Testing Stage'
                         bat 'mvn clean test'
-                        //bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
+                        bat 'copy target\\surefire-reports\\com.virtusa.qa.api.product.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\API-Regression.json'
                         }
                     }
                 }
