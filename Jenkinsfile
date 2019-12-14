@@ -136,7 +136,7 @@ pipeline {
                         echo 'Testing Stage'
                         bat 'mvn test'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
-						bat 'del /f target\\cucumber-reports\\Cucumber.json'
+			bat 'del /f target\\cucumber-reports\\Cucumber.json'
                         }
                     }
                 }
@@ -146,7 +146,7 @@ pipeline {
                         echo 'Testing Stage'
                         bat 'mvn clean test'
                         bat 'copy target\\surefire-reports\\com.virtusa.qa.api.product.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\API-Regression.json'
-						bat 'del /f target\\surefire-reports\\com.virtusa.qa.api.product.json'
+			bat 'del /f target\\surefire-reports\\com.virtusa.qa.api.product.json'
                         }
                     }
                 }
@@ -173,7 +173,7 @@ pipeline {
                                     [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
                                     [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
                             ],
-                            fileIncludePattern: '**\*.json',
+                            fileIncludePattern: '**/*.json',
                             sortingMethod: 'ALPHABETICAL',
                             trendsLimit: 100   
                     }
