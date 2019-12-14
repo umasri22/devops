@@ -1,6 +1,6 @@
 pipeline {
     agent { label 'master' }
-
+    
         stage('Test Script Checkout and Execution')
         {
            agent { label 'windows' }
@@ -146,4 +146,4 @@ pipeline {
             echo 'JENKINS PIPELINE STATUS HAS CHANGED SINCE LAST EXECUTION'
         }
     }
-
+}
