@@ -3,7 +3,7 @@ pipeline {
     stages {               
                 stage("Cucumber-report view") {
                     steps {
-                        dir('D:\\workspace\\workspace\\addressbook\bdd\\target\\cucumber-reports')
+                        dir('D:\\workspace\\workspace\\addressbook\bdd')
                         cucumber buildStatus: 'UNSTABLE',
                             failedFeaturesNumber: 1,
                             failedScenariosNumber: 1,
