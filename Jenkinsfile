@@ -96,7 +96,7 @@ pipeline {
                     steps {
                         dir('bdd') {
                         echo 'Testing Stage'
-                        bat 'mvn test -Dcucumber.option="--tags @smoke'
+                        bat 'mvn test -Dcucumber.option="--tags @smoke"'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
                         }
                     } 
@@ -105,7 +105,7 @@ pipeline {
                     steps {
                         dir('api') {
                         echo 'Testing Stage'
-                        bat 'mvn clean test -Dcucumber.option="--tags @smoke'
+                        bat 'mvn clean test -Dcucumber.option="--tags @smoke"'
                         bat 'copy target\\surefire-reports\\com.virtusa.qa.api.product.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\API-smoke.json'
                         }
                     } 
