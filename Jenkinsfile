@@ -3,6 +3,7 @@ pipeline {
     stages {               
                 stage("Cucumber-report view") {
                     steps {
+                        dir('D:\\workspace\\workspace\\addressbook\bdd\\target\\cucumber-reports')
                         cucumber buildStatus: 'UNSTABLE',
                             failedFeaturesNumber: 1,
                             failedScenariosNumber: 1,
@@ -12,7 +13,7 @@ pipeline {
                                     [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
                                     [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
                             ],
-                            fileIncludePattern: 'D:\\workspace\\workspace\\addressbook\bdd\\target\\cucumber-reports\\*.json',
+                            fileIncludePattern: '**/*.json',
                             sortingMethod: 'ALPHABETICAL',
                             trendsLimit: 100   
                     }
