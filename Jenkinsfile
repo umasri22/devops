@@ -95,7 +95,8 @@ pipeline {
 	    	stage("Unit Test") {
                   steps {
                      echo ' Unit Test Stage'
-                        bat 'mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=addressbook -Dsonar.host.url=http://10.62.125.4:8085/ -Dsonar.login=f16fabd2605044f38e79e4c0e4bc5f73c55dd144 test'
+                        bat 'mvn test'
+			junit 'target\\jacoco-ut\\*.xml'
                         //bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
                         }
                     } 
