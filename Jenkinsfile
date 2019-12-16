@@ -97,8 +97,8 @@ pipeline {
                      echo ' Unit Test Stage'
                         bat 'mvn test'
 			junit 'target\\surefire-reports\\*.xml'
-                        jacoco(execPattern: 'target\\*.exec')
-                        //bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
+                        bat 'copy target\\Cucumber.json bdd\\target\\cucumber-reports\\Cucumber-main.json'
+			bat 'copy target\\jacoco.exec bdd\\target\\jacoco-main.exec'
                         }
                     } 
                
@@ -140,13 +140,15 @@ pipeline {
                         }
                     }
                 }*/
-                stage("WEB Regression Test") {
+                stage("Web Regression Test") {
                     steps {
                         dir('bdd') {
                         echo 'Testing Stage'
                         bat 'mvn test'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
 			bat 'del /f target\\cucumber-reports\\Cucumber.json'
+			jacoco(execPattern: 'target\\*.exec')
+			
                         }
                     }
                 }
