@@ -96,9 +96,7 @@ pipeline {
                   steps {
                      echo ' Unit Test Stage'
                         bat 'mvn test'
-			junit 'target\\surefire-reports\\*.xml'
-                        bat 'copy target\\Cucumber.json bdd\\target\\cucumber-reports\\Cucumber-main.json'
-			bat 'copy target\\jacoco.exec bdd\\target\\jacoco-main.exec'
+			junit 'target\\surefire-reports\\*.xml'			
                         }
                     } 
                
@@ -147,7 +145,7 @@ pipeline {
                         bat 'mvn test'
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
 			bat 'del /f target\\cucumber-reports\\Cucumber.json'
-			jacoco(execPattern: 'target\\*.exec')
+			bat 'copy target\\jacoco.exec D:\\workspace\\workspace\\addressbook\\target\\jacoco-web.exec'
 			
                         }
                     }
@@ -216,6 +214,11 @@ pipeline {
     post {
         always {
             echo 'JENKINS PIPELINE'
+	    echo 'Jacoco Code Coverage'
+	    dir('D:\\workspace\\workspace\\addressbook\\')
+		{
+	    jacoco(execPattern: 'target\\*.exec')
+	    }
         }
         success {
             echo 'JENKINS PIPELINE SUCCESSFUL'
