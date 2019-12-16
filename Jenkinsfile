@@ -212,13 +212,12 @@ pipeline {
     }
     
     post {
-        always {
+         always {
             echo 'JENKINS PIPELINE'
-	    echo 'Jacoco Code Coverage'
-	    dir('D:\\workspace\\workspace\\addressbook\\')
-		{
-	    jacoco(execPattern: 'target\\*.exec')
-	    }
+            dir('D:\\workspace\\workspace\\addressbook\\') {
+            
+            jacoco(execPattern: 'target\\*.exec')
+        }
         }
         success {
             echo 'JENKINS PIPELINE SUCCESSFUL'
