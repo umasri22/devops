@@ -96,7 +96,7 @@ pipeline {
                   steps {
                      echo ' Unit Test Stage'
                         bat 'mvn test'
-			junit 'target\\jacoco-ut\\*.xml'
+			junit 'target\\**\\*.xml'
                         //bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
                         }
                     } 
