@@ -100,7 +100,7 @@ pipeline {
                         //bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
                         }
                     } 
-                }
+               
                 stage("Web Smoke Test") {
                     steps {
                         dir('bdd') {
