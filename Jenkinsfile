@@ -160,8 +160,15 @@ pipeline {
                         }
                     }
                 }
-		    
-		    
+
+                stage("Jacoco Code Coverage report") {
+                    steps {
+          		  dir('D:\\workspace\\workspace\\addressbook\\') {
+                         jacoco(execPattern: 'target\\*.exec')
+        		    }
+                        }
+                    } 
+		        
                 /*stage("Sanity Test") {
                     steps {
                         dir('bdd') {
@@ -214,10 +221,7 @@ pipeline {
     post {
          always {
             echo 'JENKINS PIPELINE'
-            dir('D:\\workspace\\workspace\\addressbook\\') {
-            
-            jacoco(execPattern: 'target\\*.exec')
-        }
+
         }
         success {
             echo 'JENKINS PIPELINE SUCCESSFUL'
