@@ -80,7 +80,7 @@ pipeline {
                             doGenerateSubmoduleConfigurations: false, 
                             extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'bdd']], 
                             submoduleCfg: [], 
-                            userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/bdd.git']]
+                            userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/web_bdd.git']]
                         ])
                         checkout([  
                             $class: 'GitSCM', 
