@@ -174,7 +174,7 @@ pipeline {
                         dir('swing') {
                         echo 'Testing Desktop stage'
                         bat 'mvn test'
-                        bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-desktop.json'
+                        bat 'copy target\\cucumber-reports\\Cucumber.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\Cucumber-desktop.json'
 			bat 'del /f target\\cucumber-reports\\Cucumber.json'
 			//bat 'copy target\\jacoco.exec D:\\workspace\\workspace\\addressbook\\target\\jacoco-web.exec'
 			
