@@ -90,6 +90,14 @@ pipeline {
                             submoduleCfg: [], 
                             userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/IATVirtusa/APITests.git']]
                         ])
+			 checkout([  
+                            $class: 'GitSCM', 
+                            branches: [[name: 'refs/heads/master']], 
+                            doGenerateSubmoduleConfigurations: false, 
+                            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'swing']], 
+                            submoduleCfg: [], 
+                            userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/swing_bdd.git']]
+                        ])
                     } 
                 }
 	    	stage("Unit Test") {
@@ -157,6 +165,19 @@ pipeline {
                         bat 'mvn clean test'
                         bat 'copy target\\surefire-reports\\com.virtusa.qa.api.product.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\API-Regression.json'
 			bat 'del /f target\\surefire-reports\\com.virtusa.qa.api.product.json'
+                        }
+                    }
+                }
+		    
+		stage("Desktop Test") {
+                    steps {
+                        dir('swing') {
+                        echo 'Testing Desktop stage'
+                        bat 'mvn test'
+                        bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-desktop.json'
+			bat 'del /f target\\cucumber-reports\\Cucumber.json'
+			//bat 'copy target\\jacoco.exec D:\\workspace\\workspace\\addressbook\\target\\jacoco-web.exec'
+			
                         }
                     }
                 }
