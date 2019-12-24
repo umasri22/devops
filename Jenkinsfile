@@ -59,7 +59,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        /*stage('Deploy') {
             steps {
                 sh 'curl --upload-file target/addressbook.war "http://tomcat:password@10.62.125.4:8083/manager/text/deploy?path=/addressbook&update=true"'
                 //sh 'curl --upload-file target/addressbook.war "http://tomcat:password@34.93.238.186:8081/manager/text/deploy?path=/addressbook&update=true"'
@@ -67,7 +67,19 @@ pipeline {
                 //    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
                 //}
             }
-        }
+        }*/
+	  stage("deploy") {
+              steps {
+                      sh 'cp -arf /home/ubuntu/playbooks/deployment.yml ./deployment.yml'
+                      ansiColor('xterm') {
+                         ansiblePlaybook( 
+                            playbook: 'deployment.yml',
+                            credentialsId: 'ansible',
+                            extras: '-vvv',
+                            colorized: true) 
+                           }
+                      }
+                }
         stage('Test Script Checkout and Execution')
         {
            agent { label 'windows' }
