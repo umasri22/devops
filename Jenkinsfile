@@ -119,7 +119,13 @@ pipeline {
 			junit 'target\\surefire-reports\\*.xml'			
                         }
                     } 
-               
+                stage('Export Cucumber') {
+		    steps {
+			dir('bdd') {
+		        	step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'XRAYD-11', serverInstance: 'jiraserver'])
+			}
+		    }
+		}
                 stage("Web Smoke Test") {
                     steps {
                         dir('bdd') {
@@ -130,13 +136,6 @@ pipeline {
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
                         }
                     } 
-                }
-		stage('Export Cucumber') {
-		    steps {
-			dir('bdd') {
-		        	step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'XRAYD-11', serverInstance: 'jiraserver'])
-			}
-		    }
 		}
                 stage("API Smoke Test") {
                     steps {
