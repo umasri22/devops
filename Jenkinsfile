@@ -124,7 +124,7 @@ pipeline {
                     steps {
                         dir('bdd') {
                         echo 'Testing Stage'
-			step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', serverInstance: 'jiraserver'])
+			step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'XRAYD-11', serverInstance: 'jiraserver'])
                         bat 'mvn test -Dcucumber.option="--tags @smoke"'
 			step([$class: 'XrayImportBuilder', endpointName: '/cucumber', importFilePath: '\\target\\cucumber-reports\\Cucumber.json', serverInstance: 'jiraserver'])
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
