@@ -119,13 +119,6 @@ pipeline {
 			junit 'target\\surefire-reports\\*.xml'			
                         }
                     } 
-                stage('Export Cucumber') {
-		    steps {
-			dir('bdd') {
-		        	step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'XRAYD-11', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
-			}
-		    }
-		}
                 stage("Web Smoke Test") {
                     steps {
                         dir('bdd') {
