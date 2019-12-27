@@ -124,7 +124,7 @@ pipeline {
                         dir('bdd') {
                         echo 'Testing Stage'
 			step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'XRAYD-11', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
-                        bat 'mvn test -Dcucumber.option="--tags @smoke"'
+                        bat 'mvn test -Dcucumber.options="--tags @smoke"'
 			step([$class: 'XrayImportBuilder', endpointName: '/cucumber', importFilePath: '\\target\\cucumber-reports\\Cucumber.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
                         }
@@ -134,7 +134,7 @@ pipeline {
                     steps {
                         dir('api') {
                         echo 'Testing Stage'
-                        bat 'mvn clean test -Dcucumber.option="--tags @smoke"'
+                        bat 'mvn clean test -Dcucumber.options="--tags @smoke"'
                         bat 'copy target\\surefire-reports\\com.virtusa.qa.api.product.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\API-smoke.json'
                         }
                     } 
