@@ -17,7 +17,7 @@ pipeline {
                 sh 'mvn package -DskipTests'
             }
         }
-        stage("publish to nexus") {
+        /*stage("publish to nexus") {
             steps {
                 script {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
@@ -47,10 +47,7 @@ pipeline {
                                 file: artifactPath,
                                 type: pom.packaging]//,
                                 // Lets upload the pom.xml file for additional information for Transitive dependencies
-                                /*[artifactId: pom.artifactId,
-                                classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]*/
+
                             ]
                         );
                     } else {
@@ -58,7 +55,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         /*stage('Deploy') {
             steps {
                 sh 'curl --upload-file target/addressbook.war "http://tomcat:password@10.62.125.4:8083/manager/text/deploy?path=/addressbook&update=true"'
