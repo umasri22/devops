@@ -11,12 +11,20 @@ pipeline {
                     //sh 'mvn clean compile' 
             }
         }
+	
+	stage('Scanning for Security') {
+         steps {
+            fodStaticAssessment bsiToken: 'eyJ0ZW5hbnRJZCI6OTY5MywidGVuYW50Q29kZSI6IlZpcnR1c2FfMzQyX0ZNQV8zMjk5MzUyMDYiLCJyZWxlYXNlSWQiOjgwMjIyLCJwYXlsb2FkVHlwZSI6IkFOQUxZU0lTX1BBWUxPQUQiLCJhc3Nlc3NtZW50VHlwZUlkIjoxNCwidGVjaG5vbG9neVR5cGUiOiJKQVZBL0oyRUUiLCJ0ZWNobm9sb2d5VHlwZUlkIjo3LCJ0ZWNobm9sb2d5VmVyc2lvbiI6IjEuNyIsInRlY2hub2xvZ3lWZXJzaW9uSWQiOjEwLCJhdWRpdFByZWZlcmVuY2UiOiJBdXRvbWF0ZWQiLCJhdWRpdFByZWZlcmVuY2VJZCI6MiwiaW5jbHVkZVRoaXJkUGFydHkiOmZhbHNlLCJpbmNsdWRlT3BlblNvdXJjZUFuYWx5c2lzIjpmYWxzZSwicG9ydGFsVXJpIjoiaHR0cHM6Ly90cmlhbC5mb3J0aWZ5LmNvbS8iLCJhcGlVcmkiOiJodHRwczovL2FwaS50cmlhbC5mb3J0aWZ5LmNvbSIsInNjYW5QcmVmZXJlbmNlIjoiU3RhbmRhcmQiLCJzY2FuUHJlZmVyZW5jZUlkIjoxfQ==', entitlementPreference: 'SingleScanOnly', inProgressScanActionType: 'CancelInProgressScan', overrideGlobalConfig: true, personalAccessToken: 'FortifyScan', remediationScanPreferenceType: 'RemediationScanIfAvailable', srcLocation: '.', tenantId: 'Virtusa_342_FMA_329935206', username: 'preethkumar.k@gmail.com'
+            fodPollResults bsiToken: 'eyJ0ZW5hbnRJZCI6OTY5MywidGVuYW50Q29kZSI6IlZpcnR1c2FfMzQyX0ZNQV8zMjk5MzUyMDYiLCJyZWxlYXNlSWQiOjgwMjIyLCJwYXlsb2FkVHlwZSI6IkFOQUxZU0lTX1BBWUxPQUQiLCJhc3Nlc3NtZW50VHlwZUlkIjoxNCwidGVjaG5vbG9neVR5cGUiOiJKQVZBL0oyRUUiLCJ0ZWNobm9sb2d5VHlwZUlkIjo3LCJ0ZWNobm9sb2d5VmVyc2lvbiI6IjEuNyIsInRlY2hub2xvZ3lWZXJzaW9uSWQiOjEwLCJhdWRpdFByZWZlcmVuY2UiOiJBdXRvbWF0ZWQiLCJhdWRpdFByZWZlcmVuY2VJZCI6MiwiaW5jbHVkZVRoaXJkUGFydHkiOmZhbHNlLCJpbmNsdWRlT3BlblNvdXJjZUFuYWx5c2lzIjpmYWxzZSwicG9ydGFsVXJpIjoiaHR0cHM6Ly90cmlhbC5mb3J0aWZ5LmNvbS8iLCJhcGlVcmkiOiJodHRwczovL2FwaS50cmlhbC5mb3J0aWZ5LmNvbSIsInNjYW5QcmVmZXJlbmNlIjoiU3RhbmRhcmQiLCJzY2FuUHJlZmVyZW5jZUlkIjoxfQ==', overrideGlobalConfig: true, personalAccessToken: 'FortifyScan', pollingInterval: 1, tenantId: 'Virtusa_342_FMA_329935206', username: 'preethkumar.k@gmail.com'
+            }
+      	}    
+	
         stage('Package') {
             steps {
                 echo 'Packaging'
                 sh 'mvn package -DskipTests'
             }
-        }
+        }   
         /*stage("publish to nexus") {
             steps {
                 script {
