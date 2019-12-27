@@ -164,7 +164,7 @@ pipeline {
                         dir('bdd') {
                         echo 'Testing Stage'
 			step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'XRAYD-11', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
-                        bat 'mvn test'
+                        bat 'mvn test -Dcucumber.options="--tags @regression"'
 			step([$class: 'XrayImportBuilder', endpointName: '/cucumber', importFilePath: '\\target\\cucumber-reports\\Cucumber.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
                         bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
 			bat 'del /f target\\cucumber-reports\\Cucumber.json'
