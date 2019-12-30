@@ -11,7 +11,7 @@
          version: 2.0-SNAPSHOT
          extension: war
          dest: /tmp/addressbook.war
-         repository_url: 'http://34.93.58.228:8081/repository/maven-snapshots/'
+         repository_url: 'http://10.62.125.4:8084/repository/maven-snapshots/'
          username: admin
          password: password
 
