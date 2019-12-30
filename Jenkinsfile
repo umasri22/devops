@@ -75,10 +75,10 @@ pipeline {
         }*/
 	  stage("deploy") {
               steps {
-                      sh 'cp -arf /home/ubuntu/playbooks/deployment.yml ./deployment.yml'
+                     # sh 'cp -arf /home/ubuntu/playbooks/deployment.yml ./deployment.yml'
                       ansiColor('xterm') {
                          ansiblePlaybook( 
-                            playbook: 'deployment.yml',
+                            playbook: 'deploy_nexus.yml',
                             credentialsId: 'ansible',
                             extras: '-vvv',
                             colorized: true) 
