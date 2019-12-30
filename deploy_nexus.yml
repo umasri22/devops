@@ -1,0 +1,48 @@
+---
+ - hosts: localhost
+   gather_facts: false
+   become: true
+   tasks:
+
+      - name: "Download the latest artifacct from the Nexus"
+        maven_artifact:
+         group_id: com.edurekademo.tutorial
+         artifact_id: addressbook
+         version: 2.0-SNAPSHOT
+         extension: war
+         dest: /tmp/addressbook.war
+         repository_url: 'http://34.93.58.228:8081/repository/maven-snapshots/'
+         username: admin
+         password: password
+
+      - stat:
+          path: /opt/tomcat/apache-tomcat-8.5.49/webapps
+        register: ex
+
+      - fail:
+          msg: "Tomcat Path DOESN`T EXISTS"
+        when: ex.stat.isdir == false
+
+#      - name: "Stop the tomcat"
+#        shell: sh shutdown.sh
+#        args:
+#          chdir: /opt/tomcat/apache-tomcat-8.5.49/bin
+
+      - name: "Copy the artifact to tomcat webapps"
+        copy:
+          src: /tmp/addressbook.war
+          dest: /opt/tomcat/apache-tomcat-8.5.49/webapps
+          backup: yes
+        register: artifact
+
+      - name: "copy the backup to tmp location"
+        shell: sudo mv -f addressbook.war.* /tmp/backup_war/
+        args:
+          chdir: /opt/tomcat/apache-tomcat-8.5.49/webapps/
+        when: artifact.changed == true
+
+
+#      - name: "Start the Tomcat"
+#        shell: sh startup.sh
+#        args:
+#          chdir: /opt/tomcat/apache-tomcat-8.5.49/bin
