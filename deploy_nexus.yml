@@ -34,7 +34,13 @@
           dest: /opt/tomcat/apache-tomcat-8.5.49/webapps
           backup: yes
         register: artifact
-
+        
+      - name: Create a backup directory if it does not exist
+        file:
+          path: /tmp/backup_war
+          state: directory
+          mode: '0744'
+           
       - name: "copy the backup to tmp location"
         shell: sudo mv -f addressbook.war.* /tmp/backup_war/
         args:
