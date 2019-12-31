@@ -46,7 +46,11 @@
         args:
           chdir: /opt/tomcat/apache-tomcat-8.5.49/webapps/
         when: artifact.changed == true
-
+        
+      - name: "Remove the downloded nexus artifact"
+        file:
+          path: /tmp/addressbook.war
+          state: absent
 
 #      - name: "Start the Tomcat"
 #        shell: sh startup.sh
