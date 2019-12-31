@@ -1,6 +1,14 @@
 pipeline {
     agent { label 'master' }
     stages {
+	stage("Unit Test") {
+	   agent { label 'windows' }
+           steps {
+              	echo ' Unit Test Stage'
+                 bat 'mvn test'
+		  junit 'target\\surefire-reports\\*.xml'	
+	   	}
+           }
         stage('Build') {
             steps {
                 echo 'Clean Build'
@@ -83,7 +91,21 @@ pipeline {
                             extras: '-vvv',
                             colorized: true) 
                            }
+		      
                       }
+	 post {
+               success {
+                    //junit 'target/surefire-reports/*.xml'
+                    hygieiaArtifactPublishStep artifactDirectory: 'target', artifactGroup: 'com.addressbook', artifactName: 'addressbook.war', artifactVersion: '2'
+                    hygieiaDeployPublishStep applicationName: 'Addressbook', artifactDirectory: 'target', artifactGroup: 'com.addressbook', artifactName: 'addressbook.war', artifactVersion: '2', buildStatus: 'Success', environmentName: 'Dev'
+                }
+               failure {
+                    //junit 'target/surefire-reports/*.xml'
+                    hygieiaArtifactPublishStep artifactDirectory: 'target', artifactGroup: 'com.addressbook', artifactName: 'addressbook.war', artifactVersion: '2'
+                    hygieiaDeployPublishStep applicationName: 'Addressbook', artifactDirectory: 'target', artifactGroup: 'com.addressbook', artifactName: 'addressbook.war', artifactVersion: '2', buildStatus: 'Failure', environmentName: 'Dev'
+                
+            }
+}
                 }
         stage('Test Script Checkout and Execution')
         {
@@ -117,13 +139,14 @@ pipeline {
                         ])
                     } 
                 }
-	    	stage("Unit Test") {
+/*	    	stage("Unit Test") {
                   steps {
                      echo ' Unit Test Stage'
                         bat 'mvn test'
 			junit 'target\\surefire-reports\\*.xml'			
-                        }
-                    } 
+                        } 
+                    } */
+		    
                 stage("Web Smoke Test") {
                     steps {
                         dir('bdd') {
