@@ -5,7 +5,6 @@ pipeline {
 				stage("Unit Test") {
 					agent { label 'windows' }
 						steps {
-								cleanWs()
 								echo ' Unit Test Stage'
 								bat 'mvn test'
 								junit 'target\\surefire-reports\\*.xml'	
@@ -14,7 +13,6 @@ pipeline {
 				stage('Build') {
 						steps {
 								echo 'Clean Build'
-								cleanWs()
 								sh "ls"
 								sh "pwd"
 								sh "mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=addressbook -Dsonar.host.url=http://10.62.125.4:8085/ -Dsonar.login=f16fabd2605044f38e79e4c0e4bc5f73c55dd144"
