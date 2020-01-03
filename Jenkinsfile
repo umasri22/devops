@@ -1,7 +1,14 @@
 pipeline {
     agent { label 'master' }
+	options { skipDefaultCheckout() }	
     stages {
-                    
+                    		stage("Checkout SCM") {
+						steps {
+								cleanWs()
+								echo 'checkout scm'
+								checkout scm
+						}
+				}
 				stage("Unit Test") {
 					agent { label 'windows' }
 						steps {
@@ -38,6 +45,7 @@ pipeline {
 				}   
 				stage("publish to nexus") {
 					steps {
+						echo 'publish to nexus'
 						script {
 							// Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
 							pom = readMavenPom file: "pom.xml";
@@ -101,7 +109,8 @@ pipeline {
 				}*/
 				stage("deploy") {
 					steps {
-							 // sh 'cp -arf /home/ubuntu/playbooks/deployment.yml ./deployment.yml'
+							echo 'deploy artifact from nexus'
+							// sh 'cp -arf /home/ubuntu/playbooks/deployment.yml ./deployment.yml'
 							ansiColor('xterm') {
 								ansiblePlaybook( 
 								playbook: 'deploy_nexus.yml',
@@ -160,7 +169,7 @@ pipeline {
 						stage("Web Smoke Test") {
 							steps {
 								dir('bdd') {
-												echo 'Testing Stage'
+												echo 'WEB BDD Testing Stage'
 												step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'AD-22', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 												bat 'mvn test -Dcucumber.options="--tags @smoke"'
 												bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-smoke.json'
@@ -189,7 +198,7 @@ pipeline {
 						stage("API Smoke Test") {
 							steps {
 								dir('api') {
-											echo 'Testing Stage'
+											echo 'API smoke Testing Stage'
 											step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\java\\com\\virtusa\\qa\\api', issues: 'AD-73', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 											bat 'mvn clean test -Dcucumber.options="--tags @smoke"'
 											bat 'copy target\\surefire-reports\\com.virtusa.qa.api.product.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\API-smoke.json'
@@ -237,7 +246,7 @@ pipeline {
 						stage("Web Regression Test") {
 							steps {
 								dir('bdd') {
-										echo 'Testing Stage'
+										echo 'Web regression Testing Stage'
 										//step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'AD-22', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 										bat 'mvn test -Dcucumber.options="--tags @regression"'
 										bat 'copy target\\cucumber-reports\\Cucumber.json target\\cucumber-reports\\Cucumber-regression.json'
@@ -268,7 +277,7 @@ pipeline {
 						stage("API Regression Test") {
 							steps {
 								dir('api') {
-									echo 'Testing Stage'
+									echo 'API API regression Testing Stage'
 								  	//step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\java\\com\\virtusa\\qa\\api', issues: 'AD-73', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 
 									bat 'mvn clean test'
@@ -300,7 +309,7 @@ pipeline {
 						stage("Desktop Test") {
 							steps {
 								dir('swing') {
-									echo 'Testing Desktop stage'
+									echo 'Testing Desktop'
 								    step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'AD-74', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 									
 									bat 'mvn test'
@@ -332,9 +341,7 @@ pipeline {
 
 						stage("Jacoco Code Coverage report") {
 							steps {
-								dir('D:\\workspace\\workspace\\addressbook\\') {
-									jacoco(execPattern: 'target\\*.exec')
-								}
+									jacoco(execPattern: '\\target\\*.exec')
 							}
 						} 
 		        
