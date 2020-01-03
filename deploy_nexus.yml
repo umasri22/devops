@@ -14,12 +14,15 @@
          repository_url: 'http://10.62.125.4:8084/repository/maven-snapshots/'
          username: admin
          password: password
+        register: artifact
 
-      - stat:
+      - name: Check the tomcat exists
+        stat:
           path: /opt/tomcat/apache-tomcat-8.5.49/webapps
         register: ex
 
-      - fail:
+      - name: fail if tomcat doesnt exists
+        fail:
           msg: "Tomcat Path DOESN`T EXISTS"
         when: ex.stat.isdir == false
 
@@ -32,20 +35,7 @@
         copy:
           src: /tmp/addressbook.war
           dest: /opt/tomcat/apache-tomcat-8.5.49/webapps
-          backup: yes
-        register: artifact
-        
-      - name: Create a backup directory if it does not exist
-        file:
-          path: /tmp/backup_war
-          state: directory
-          mode: '0744'
-           
-      - name: "copy the backup to tmp location"
-        shell: sudo mv -f addressbook.war.* /tmp/backup_war/
-        args:
-          chdir: /opt/tomcat/apache-tomcat-8.5.49/webapps/
-        when: artifact.changed == true
+
         
       - name: "Remove the downloded nexus artifact"
         file:
