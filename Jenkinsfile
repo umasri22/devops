@@ -207,7 +207,7 @@ pipeline {
 														   "Dev"
 														]
 													}
-												}''',inputInfoSwitcher:"fileContent",importFilePath: '\\target\\cucumber-reports\\API-smoke.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
+												}''',inputInfoSwitcher:"fileContent",importFilePath: '\\target\\surefire-reports\\com.virtusa.qa.api.3_AD-76.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 												
 								}
 							} 
@@ -287,7 +287,7 @@ pipeline {
 														   "Dev"
 														]
 													}
-												}''',inputInfoSwitcher:"fileContent",importFilePath: '\\target\\cucumber-reports\\API-Regression.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
+												}''',inputInfoSwitcher:"fileContent",importFilePath: '\\target\\surefire-reports\\com.virtusa.qa.api.3_AD-76.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 												
 									bat 'del /f target\\surefire-reports\\com.virtusa.qa.api.product.json'
 								}
