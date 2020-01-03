@@ -5,6 +5,8 @@ pipeline {
 				stage("Unit Test") {
 					agent { label 'windows' }
 						steps {
+								cleanWs()
+								checkout scm
 								echo ' Unit Test Stage'
 								bat 'mvn test'
 								junit 'target\\surefire-reports\\*.xml'	
@@ -207,7 +209,7 @@ pipeline {
 														   "Dev"
 														]
 													}
-												}''',inputInfoSwitcher:"fileContent",importFilePath: '\\target\\surefire-reports\\com.virtusa.qa.api.3_AD-76.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
+												}''',inputInfoSwitcher:"fileContent",importFilePath: '\\target\\surefire-reports\\com.virtusa.qa.api.1_AD-102.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 												
 								}
 							} 
@@ -270,7 +272,7 @@ pipeline {
 								  	//step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\java\\com\\virtusa\\qa\\api', issues: 'AD-73', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 
 									bat 'mvn clean test'
-									bat 'copy target\\surefire-reports\\com.virtusa.qa.api.product.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\API-Regression.json'
+									bat 'copy target\\surefire-reports\\com.virtusa.qa.api.product.json ..\\bdd\\target\\cucumber-reports\\API-Regression.json'
 									step([$class: 'XrayImportBuilder', endpointName: '/cucumber/multipart',importInfo:'''{
 
 													"fields": {
@@ -287,9 +289,10 @@ pipeline {
 														   "Dev"
 														]
 													}
-												}''',inputInfoSwitcher:"fileContent",importFilePath: '\\target\\surefire-reports\\com.virtusa.qa.api.3_AD-76.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
+												}''',inputInfoSwitcher:"fileContent",importFilePath: '\\target\\surefire-reports\\com.virtusa.qa.api.1_AD-102.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 												
 									bat 'del /f target\\surefire-reports\\com.virtusa.qa.api.product.json'
+									bat 'del /f target\\surefire-reports\\com.virtusa.qa.api.1_AD-102.json'
 								}
 							}
 						}
@@ -301,7 +304,7 @@ pipeline {
 								    step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'AD-74', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 									
 									bat 'mvn test'
-									bat 'copy target\\cucumber-reports\\Cucumber.json D:\\workspace\\workspace\\addressbook\\bdd\\target\\cucumber-reports\\Cucumber-desktop.json'
+									bat 'copy target\\cucumber-reports\\Cucumber.json ..\\bdd\\target\\cucumber-reports\\Cucumber-desktop.json'
 									step([$class: 'XrayImportBuilder', endpointName: '/cucumber/multipart',importInfo:'''{
 
 													"fields": {
