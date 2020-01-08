@@ -53,6 +53,7 @@ pipeline {
 				}   
 	    			stage("XLDeploy Package") {
 					steps {
+						sh "sed -i 's/{{PACKAGE_VERSION}}/$JOB_NAME-$BUILD_NUMBER.0/g' deployit-manifest.xml"
 						xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'  
 					}
 				}
