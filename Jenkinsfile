@@ -61,9 +61,11 @@ pipeline {
     						xldPublishPackage serverCredentials: 'XLDeployServer', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
 					}
 				}  
-	    			stage('XLDeploy Deploy') {  
-    					xldDeploy serverCredentials: 'XLDeployServer', environmentId: 'Environments/QATomcatENv', packageId: 'Applications/PetClinic-war/$BUILD_NUMBER.0'
- 		 		}  
+	    			stage('XLDeploy Deploy') { 
+					steps {
+    						xldDeploy serverCredentials: 'XLDeployServer', environmentId: 'Environments/QATomcatENv', packageId: 'Applications/PetClinic-war/$BUILD_NUMBER.0'
+					}
+				}  
 				
 	}
     tools {
