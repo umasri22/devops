@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<udm.DeploymentPackage version="2.0.0" application="PetClinic-war">
+<udm.DeploymentPackage version="{{PACKAGE_VERSION}}" application="PetClinic-war">
  <application />
  <deployables>
   <jee.War name="/addressbook" file="/addressbook.war"/>
