@@ -2,7 +2,7 @@
 <udm.DeploymentPackage version="2.0.0" application="PetClinic-war">
  <application />
  <deployables>
-  <jee.War name="/addressbook" file="target/addressbook.war"/>
+  <jee.War name="/addressbook" file="/addressbook.war"/>
  </deployables>
  <dependencyResolution>LATEST</dependencyResolution>
  <undeployDependencies>false</undeployDependencies>
