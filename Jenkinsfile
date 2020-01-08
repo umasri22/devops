@@ -114,7 +114,10 @@ pipeline {
 						//    sh 'curl --upload-file target/hello-world-war-1.0.0-SNAPSHOT.war "http://${user}:${pass}@34.93.240.217:8082/manager/text/deploy?path=/hello&update=true"'
 						//}
 					}
-				}*/
+				}*/ 
+				stage('Package') {
+					xldCreatePackage artifactsPath: 'build/libs', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'  
+				}
 				stage("deploy") {
 					steps {
 							echo 'deploy artifact from nexus'
