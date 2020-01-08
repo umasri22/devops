@@ -64,7 +64,7 @@ pipeline {
 				}  
 	    			stage('XLDeploy Deploy') { 
 					steps {
-    						xldDeploy serverCredentials: 'XLDeployServer', environmentId: 'Environments/QATomcatENv', packageId: 'Applications/PetClinic-war/$BUILD_NUMBER.0'
+    						xldDeploy serverCredentials: 'XLDeployServer', environmentId: 'Environments/QATomcatENv', packageId: 'Applications/AddressBook/$BUILD_NUMBER.0'
 					}
 				}  
 				
