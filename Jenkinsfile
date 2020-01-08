@@ -53,7 +53,7 @@ pipeline {
 				}   
 	    			stage("Package123") {
 					steps {
-						xldCreatePackage artifactsPath: 'build/libs', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'  
+						xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'  
 					}
 				}
 				stage("publish to nexus") {
