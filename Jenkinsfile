@@ -51,7 +51,7 @@ pipeline {
 						sh 'mvn package -DskipTests'
 					}
 				}   
-	    		stage("XLDeploy Package") {
+	    			stage("XLDeploy Package") {
 					steps {
 						sh "sed -i 's/{{PACKAGE_VERSION}}/$BUILD_NUMBER.0/g' deployit-manifest.xml"
 						xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'  
@@ -67,7 +67,7 @@ pipeline {
     						xldDeploy serverCredentials: 'XLDeployServer', environmentId: 'Environments/QATomcatENv', packageId: 'Applications/AddressBook/$BUILD_NUMBER.0'
 					}
 				}  
-				stage("publish to nexus") {
+				/*stage("publish to nexus") {
 					steps {
 						echo 'publish to nexus'
 						script {
@@ -121,7 +121,7 @@ pipeline {
 							
 							}
 					}
-				}
+				}*/
 				/*stage('Deploy') {
 					steps {
 						sh 'curl --upload-file target/addressbook.war "http://tomcat:password@10.62.125.4:8083/manager/text/deploy?path=/addressbook&update=true"'
@@ -131,7 +131,7 @@ pipeline {
 						//}
 					}
 				}*/
-				stage("deploy") {
+				/*stage("deploy") {
 					steps {
 							echo 'deploy artifact from nexus'
 							// sh 'cp -arf /home/ubuntu/playbooks/deployment.yml ./deployment.yml'
@@ -157,7 +157,7 @@ pipeline {
 							
 							}
 					}
-				}
+				}*/
 				stage('Test Script Checkout and Execution') {
 				   agent { label 'windows' }
 					stages {
