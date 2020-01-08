@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<udm.DeploymentPackage version="3.0.0" application="sample">
+<udm.DeploymentPackage version="2.0.0" application="PetClinic-war">
  <application />
  <deployables>
-  <jee.War name="/sample" file="target/addressbook.war"/>
- <dependencyResolution>LATEST</dependencyResolution>
- <undeployDependencies>false</undeployDependencies>
+  <jee.War name="/addressbook" file="target/addressbook.war"/>
+  <dependencyResolution>LATEST</dependencyResolution>
+  <undeployDependencies>false</undeployDependencies>
 </udm.DeploymentPackage>
