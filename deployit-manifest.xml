@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<udm.DeploymentPackage version="1.0.0" application="PetPortal">
+<udm.DeploymentPackage version="3.0.0" application="sample">
  <application />
  <deployables>
   <jee.War name="/sample" file="target/addressbook.war"/>
