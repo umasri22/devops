@@ -3,6 +3,7 @@
  <application />
  <deployables>
   <jee.War name="/addressbook" file="target/addressbook.war"/>
-  <dependencyResolution>LATEST</dependencyResolution>
-  <undeployDependencies>false</undeployDependencies>
+ </deployables>
+ <dependencyResolution>LATEST</dependencyResolution>
+ <undeployDependencies>false</undeployDependencies>
 </udm.DeploymentPackage>
