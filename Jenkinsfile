@@ -115,8 +115,10 @@ pipeline {
 						//}
 					}
 				}*/ 
-				stage('Package') {
-					xldCreatePackage artifactsPath: 'build/libs', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'  
+				stage("Package123") {
+					steps {
+						xldCreatePackage artifactsPath: 'build/libs', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'  
+					}
 				}
 				stage("deploy") {
 					steps {
