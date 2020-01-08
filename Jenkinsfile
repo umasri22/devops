@@ -51,14 +51,16 @@ pipeline {
 						sh 'mvn package -DskipTests'
 					}
 				}   
-	    			stage("Package123") {
+	    			stage("XLDeploy Package") {
 					steps {
 						xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'  
 					}
 				}
-	    			stage('Publish') {  
-    					xldPublishPackage serverCredentials: 'XLDeployServer', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
-  				}  
+	    			stage('XLDeploy Publish') {  
+					steps {
+    						xldPublishPackage serverCredentials: 'XLDeployServer', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
+					}
+				}  
 				stage("publish to nexus") {
 					steps {
 						echo 'publish to nexus'
