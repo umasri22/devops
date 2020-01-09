@@ -1,0 +1,85 @@
+pipeline {
+    agent { label 'master' }
+	options { skipDefaultCheckout() }	
+    stages {
+        stage("Checkout SCM") {
+			steps {
+				cleanWs()
+				echo 'checkout scm'
+				checkout scm
+			}
+		}
+		stage("Unit Test") {
+			agent { label 'windows' }
+				steps {
+					cleanWs()
+					checkout scm
+					echo ' Unit Test Stage'
+					bat 'mvn test'
+					junit 'target\\surefire-reports\\*.xml'	
+				}
+		}
+		stage('Build and Package') {
+			steps {
+				echo 'Clean Build'
+				sh "ls"
+				sh "pwd"
+				sh "mvn sonar:sonar clean compile package -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=addressbook -Dsonar.host.url=http://10.62.125.4:8085/ -Dsonar.login=f16fabd2605044f38e79e4c0e4bc5f73c55dd144"
+				//sh "mvn sonar:sonar clean compile -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=employee_jdbc -Dsonar.host.url=http://34.93.123.206/ -Dsonar.login=aac7cc7809ddc82ce0070e3f74726c71216936b6"
+				//sh 'mvn clean compile' 
+			}
+		}
+		stage("XLDeploy Package") {
+			steps {
+				sh "sed -i 's/{{PACKAGE_VERSION}}/$BUILD_NUMBER.0/g' deployit-manifest.xml"
+				xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'  
+			}
+		}
+		stage('XLDeploy Publish') {  
+			steps {
+					xldPublishPackage serverCredentials: 'XLDeployServer', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
+			}
+		}  
+		stage('XLDeploy Deploy') { 
+			steps {
+					xldDeploy serverCredentials: 'XLDeployServer', environmentId: 'Environments/QATomcatENv', packageId: 'Applications/AddressBook/$BUILD_NUMBER.0'
+			}
+		}	
+	}
+    tools {
+        maven 'maven3.3.9'
+        jdk 'openjdk8'
+    }
+    environment {
+        // This can be nexus3 or nexus2
+        NEXUS_VERSION = "nexus3"
+        // This can be http or https
+        NEXUS_PROTOCOL = "http"
+        // Where your Nexus is running
+        NEXUS_URL = "10.62.125.4:8084"
+        //NEXUS_URL = "35.200.184.59:8081"
+        // Repository where we will upload the artifact
+        NEXUS_REPOSITORY = "maven-snapshots"
+        // Jenkins credential id to authenticate to Nexus OSS
+        NEXUS_CREDENTIAL_ID = "nexusadmin"
+    }
+    
+    post {
+         always {
+            echo 'JENKINS PIPELINE'
+
+        }
+        success {
+            echo 'JENKINS PIPELINE SUCCESSFUL'
+        }
+        failure {
+            echo 'JENKINS PIPELINE FAILED'
+        }
+        unstable {
+            echo 'JENKINS PIPELINE WAS MARKED AS UNSTABLE'
+        }
+        changed {
+            echo 'JENKINS PIPELINE STATUS HAS CHANGED SINCE LAST EXECUTION'
+        }
+    }
+}
