@@ -296,7 +296,7 @@ pipeline {
 								}
 							}
 						}
-						/*stage("API Regression Test") {
+						stage("API Regression Test") {
 							steps {
 								dir('api') {
 									echo 'API API regression Testing Stage'
@@ -326,7 +326,7 @@ pipeline {
 									bat 'del /f target\\surefire-reports\\com.virtusa.qa.api.1_AD-102.json'
 								}
 							}
-						}*/
+						}
 		    
 						stage("Desktop Test") {
 							steps {
