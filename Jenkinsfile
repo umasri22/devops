@@ -242,7 +242,7 @@ pipeline {
 														   "Dev"
 														]
 													}
-												}''',inputInfoSwitcher:"fileContent",importFilePath: '..\\target\\cucumber-reports\\API-Smoke\\API-smoke.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
+												}''',inputInfoSwitcher:"fileContent",importFilePath: '\\target\\surefire-reports\\com.virtusa.qa.api.1_API-1.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 												
 								}
 							} 
@@ -397,6 +397,7 @@ pipeline {
 											[key: 'Submitter', value: '${GIT_AUTHOR_NAME}']
 									],
 									fileIncludePattern: '**/*.json',
+									jsonReportDirectory: 'target\\cucumber-reports',
 									sortingMethod: 'ALPHABETICAL',
 									trendsLimit: 100   
 							}
