@@ -303,7 +303,7 @@ pipeline {
 								always {
 									//bat 'xcopy target\\allure-results ..\\allure-results /S /i'
 									//bat 'rd /s /q target\\allure-results'	
-									allure results: [[path: 'target\\allure-results']]
+									allure results: [[path: 'bdd\\target\\allure-results']]
 
 									}
 								}
