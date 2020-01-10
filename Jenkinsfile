@@ -411,11 +411,11 @@ pipeline {
 							}
 						post {
 							always {
-	    							hygieiaTestPublishStep buildStatus: '${currentBuild.result}', testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber-smoke.json', testResultsDirectory: 'target\\cucumber-reports\\Web-Smoke', testType: 'Functional'
-								hygieiaTestPublishStep buildStatus: '${currentBuild.result}', testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'API-smoke.json', testResultsDirectory: 'target\\cucumber-reports\\API-Smoke', testType: 'Functional'
-								hygieiaTestPublishStep buildStatus: '${currentBuild.result}', testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber-desktop.json', testResultsDirectory: 'target\\cucumber-reports\\Desktop-Test', testType: 'Functional'
-								hygieiaTestPublishStep buildStatus: '${currentBuild.result}', testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber-regression.json', testResultsDirectory: 'target\\cucumber-reports\\Web-Regression', testType: 'Functional'
-								hygieiaTestPublishStep buildStatus: '${currentBuild.result}', testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'API-regression.json', testResultsDirectory: 'target\\cucumber-reports\\API-Regression', testType: 'Functional'
+	    							hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber-smoke.json', testResultsDirectory: 'target\\cucumber-reports\\Web-Smoke', testType: 'Functional'
+								hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'API-smoke.json', testResultsDirectory: 'target\\cucumber-reports\\API-Smoke', testType: 'Functional'
+								hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber-desktop.json', testResultsDirectory: 'target\\cucumber-reports\\Desktop-Test', testType: 'Functional'
+								hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber-regression.json', testResultsDirectory: 'target\\cucumber-reports\\Web-Regression', testType: 'Functional'
+								hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'API-regression.json', testResultsDirectory: 'target\\cucumber-reports\\API-Regression', testType: 'Functional'
 							
 								}
 							}
