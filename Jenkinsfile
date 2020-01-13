@@ -175,7 +175,7 @@ pipeline {
 									doGenerateSubmoduleConfigurations: false, 
 									extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'api']], 
 									submoduleCfg: [], 
-									userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/IATVirtusa/APITests.git']]
+									userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/api_bdd.git']]
 								])
 								checkout([  
 									$class: 'GitSCM', 
