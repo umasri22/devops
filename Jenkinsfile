@@ -115,7 +115,23 @@ pipeline {
 										}
 									}''',testExecKey:'AD-23',inputInfoSwitcher:"fileContent",importFilePath: '..\\target\\cucumber-reports\\Web-Smoke\\Cucumber-smoke.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])												
 							}
-						} 
+						
+						}
+						post {
+							always {
+									allure results: [[path: 'web\\target\\allure-results']]
+									cucumber buildStatus: 'UNSTABLE',
+									failedFeaturesNumber: 1,
+									failedScenariosNumber: 1,
+									skippedStepsNumber: 1,
+									failedStepsNumber: 1,
+									fileIncludePattern: '**/*.json',
+									jsonReportDirectory: 'target\\cucumber-reports',
+									sortingMethod: 'ALPHABETICAL',
+									trendsLimit: 100  
+
+							}
+						}
 					}
 			stage("API Smoke Test") {
 				agent { label 'windows' }
