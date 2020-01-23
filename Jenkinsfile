@@ -63,9 +63,9 @@ pipeline {
 								$class: 'GitSCM', 
 								branches: [[name: 'refs/heads/master']], 
 								doGenerateSubmoduleConfigurations: false, 
-								extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'bdd']], 
+								extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'web']], 
 								submoduleCfg: [], 
-								userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/web_bdd.git']]
+								userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/Addressbook_web_test.git']]
 							])
 							echo 'checkout API BDD'
 							checkout([  
@@ -74,7 +74,7 @@ pipeline {
 								doGenerateSubmoduleConfigurations: false, 
 								extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'api']], 
 								submoduleCfg: [], 
-								userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/api_bdd.git']]
+								userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/ProductList_api_test.git']]
 							])
 							echo 'checkout Swing Desktop'
 							checkout([  
@@ -83,7 +83,7 @@ pipeline {
 								doGenerateSubmoduleConfigurations: false, 
 								extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'swing']], 
 								submoduleCfg: [], 
-								userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/swing_bdd.git']]
+								userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/Feedback_swing_test.git']]
 							])
 						} 
 			}
@@ -91,7 +91,7 @@ pipeline {
 			stage("Web Smoke Test") {
 					agent { label 'windows' }
 						steps {
-							dir('bdd') {
+							dir('web') {
 									echo 'WEB BDD Testing Stage'
 									step([$class: 'XrayExportBuilder', filePath: '\\src\\test\\resource\\features', issues: 'AD-22', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 									bat 'mvn test -Dcucumber.options="--tags @smoke"'
@@ -151,7 +151,7 @@ pipeline {
 			stage("Web Regression Test") {
 				agent { label 'windows' }
 				steps {
-					dir('bdd') {
+					dir('web') {
 							echo 'Web regression Testing Stage'
 							bat 'mvn test -Dcucumber.options="--tags @regression"'
 						    	bat 'mkdir ..\\target\\cucumber-reports\\Web-Regression'
@@ -179,7 +179,7 @@ pipeline {
 
 				post {
 					always {
-							allure results: [[path: 'bdd\\target\\allure-results']]
+							allure results: [[path: 'web\\target\\allure-results']]
 
 						}
 					}
