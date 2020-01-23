@@ -120,13 +120,9 @@ pipeline {
 						post {
 							always {
 									allure results: [[path: 'web\\target\\allure-results']]
-									cucumber buildStatus: 'UNSTABLE',
-									failedFeaturesNumber: 1,
-									failedScenariosNumber: 1,
-									skippedStepsNumber: 1,
-									failedStepsNumber: 1,
+									cucumber buildStatus: 'UNSTABLE',								
 									fileIncludePattern: '**/*.json',
-									jsonReportDirectory: 'target\\cucumber-reports',
+									jsonReportDirectory: 'web\\target\\cucumber-reports',
 									sortingMethod: 'ALPHABETICAL',
 									trendsLimit: 100  
 
