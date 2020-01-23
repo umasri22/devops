@@ -127,7 +127,7 @@ pipeline {
 									jsonReportDirectory: 'web\\target\\cucumber-reports',
 									sortingMethod: 'ALPHABETICAL',
 									trendsLimit: 100
-									hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber.json', testResultsDirectory: 'web\\target\\cucumber-reports', testType: 'Functional'
+									hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber.json', testResultsDirectory: '\\web\\target\\cucumber-reports', testType: 'Functional'
 							}
 						}
 					}
@@ -167,7 +167,7 @@ pipeline {
 									jsonReportDirectory: 'api\\target\\surefire-reports',
 									sortingMethod: 'ALPHABETICAL',
 									trendsLimit: 100  
-									hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'com.virtusa.qa.api.product.json', testResultsDirectory: 'api\\target\\surefire-reports', testType: 'Functional'
+									hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'com.virtusa.qa.api.product.json', testResultsDirectory: '\\api\\target\\surefire-reports', testType: 'Functional'
 
 							}
 					}
@@ -209,7 +209,7 @@ pipeline {
 									jsonReportDirectory: 'web\\target\\cucumber-reports',
 									sortingMethod: 'ALPHABETICAL',
 									trendsLimit: 100  
-									hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber.json', testResultsDirectory: 'web\\target\\cucumber-reports', testType: 'Functional'
+									hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber.json', testResultsDirectory: '\\web\\target\\cucumber-reports', testType: 'Functional'
 
 							}
 					}
@@ -252,7 +252,7 @@ pipeline {
 									jsonReportDirectory: 'api\\target\\surefire-reports',
 									sortingMethod: 'ALPHABETICAL',
 									trendsLimit: 100  
-									hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'com.virtusa.qa.api.product.json', testResultsDirectory: 'api\\target\\surefire-reports', testType: 'Functional'
+									hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'com.virtusa.qa.api.product.json', testResultsDirectory: '\\api\\target\\surefire-reports', testType: 'Functional'
 
 							}
 					}
@@ -296,7 +296,7 @@ pipeline {
 									jsonReportDirectory: 'swing\\target\\cucumber-reports',
 									sortingMethod: 'ALPHABETICAL',
 									trendsLimit: 100 
-									hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber.json', testResultsDirectory: 'swing\\target\\cucumber-reports', testType: 'Functional'
+									hygieiaTestPublishStep buildStatus: "${currentBuild.currentResult}", testApplicationName: 'addressbook', testEnvironmentName: 'Dev', testFileNamePattern: 'Cucumber.json', testResultsDirectory: '\\swing\\target\\cucumber-reports', testType: 'Functional'
 
 							}
 					}
