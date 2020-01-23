@@ -120,12 +120,13 @@ pipeline {
 						post {
 							always {
 									allure results: [[path: 'web\\target\\allure-results']]
-									cucumber buildStatus: 'UNSTABLE',								
-									fileIncludePattern: '**/*.json',
+
+							}
+							failure {
+									cucumber fileIncludePattern: '**/*.json',
 									jsonReportDirectory: 'web\\target\\cucumber-reports',
 									sortingMethod: 'ALPHABETICAL',
-									trendsLimit: 100  
-
+									trendsLimit: 100
 							}
 						}
 					}
@@ -158,6 +159,16 @@ pipeline {
 
 					}
 				} 
+				post {
+						failure {
+									
+									cucumber fileIncludePattern: '**/*.json',
+									jsonReportDirectory: 'api\\target\\surefire-reports',
+									sortingMethod: 'ALPHABETICAL',
+									trendsLimit: 100  
+
+							}
+					}
 			}
 
 			stage("Web Regression Test") {
@@ -190,10 +201,14 @@ pipeline {
 				}
 
 				post {
-					always {
-							allure results: [[path: 'web\\target\\allure-results']]
+						failure {
+									
+									cucumber fileIncludePattern: '**/*.json',
+									jsonReportDirectory: 'web\\target\\cucumber-reports',
+									sortingMethod: 'ALPHABETICAL',
+									trendsLimit: 100  
 
-						}
+							}
 					}
 			}
 			stage("API Regression Test") {
@@ -226,6 +241,17 @@ pipeline {
 						bat 'del /f target\\surefire-reports\\com.virtusa.qa.api.1_API-1.json'
 					}
 				}
+				
+				post {
+						failure {
+									
+									cucumber fileIncludePattern: '**/*.json',
+									jsonReportDirectory: 'api\\target\\surefire-reports',
+									sortingMethod: 'ALPHABETICAL',
+									trendsLimit: 100  
+
+							}
+					}
 			}
 
 			stage("Desktop Test") {
@@ -259,6 +285,16 @@ pipeline {
 
 					}
 				}
+				post {
+						failure {
+									
+									cucumber fileIncludePattern: '**/*.json',
+									jsonReportDirectory: 'swing\\target\\cucumber-reports,
+									sortingMethod: 'ALPHABETICAL',
+									trendsLimit: 100  
+
+							}
+					}
 			}
 
 			stage("Cucumber Report generation") {
