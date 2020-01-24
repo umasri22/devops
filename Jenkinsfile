@@ -150,12 +150,6 @@ pipeline {
 							}
 						
 						}
-						post {
-							always {
-									allure results: [[path: 'web\\target\\allure-results']]
-
-							}
-						}
 			}
 	    		stage("API Regression Test") {
 				agent { label 'windows' }
@@ -219,6 +213,12 @@ pipeline {
 								}
 							}''',inputInfoSwitcher:"fileContent",importFilePath: '..\\target\\cucumber-reports\\Web-Regression\\Cucumber-regression.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 					}
+				}
+				post {
+							always {
+									allure results: [[path: 'web\\target\\allure-results']]
+
+							}
 				}
 			}
 			
