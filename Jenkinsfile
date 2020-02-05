@@ -22,7 +22,10 @@ pipeline {
 		}
 		stage('Scanning for Security') {
 				 steps {
-					 echo 'Code Vulnerability Scan'								
+					 echo 'Code Vulnerability Scan'	
+					 fodStaticAssessment bsiToken: 'eyJ0ZW5hbnRJZCI6MTAwODYsInRlbmFudENvZGUiOiJUZWNoX01haGluZHJhXzEwNTNfRk1BXzY0NzA3Mzc4NSIsInJlbGVhc2VJZCI6ODUxNDQsInBheWxvYWRUeXBlIjoiQU5BTFlTSVNfUEFZTE9BRCIsImFzc2Vzc21lbnRUeXBlSWQiOjE0LCJ0ZWNobm9sb2d5VHlwZSI6IkpBVkEvSjJFRSIsInRlY2hub2xvZ3lUeXBlSWQiOjcsInRlY2hub2xvZ3lWZXJzaW9uIjoiMS44IiwidGVjaG5vbG9neVZlcnNpb25JZCI6MTIsImF1ZGl0UHJlZmVyZW5jZSI6IkF1dG9tYXRlZCIsImF1ZGl0UHJlZmVyZW5jZUlkIjoyLCJpbmNsdWRlVGhpcmRQYXJ0eSI6ZmFsc2UsImluY2x1ZGVPcGVuU291cmNlQW5hbHlzaXMiOmZhbHNlLCJwb3J0YWxVcmkiOiJodHRwczovL3RyaWFsLmZvcnRpZnkuY29tLyIsImFwaVVyaSI6Imh0dHBzOi8vYXBpLnRyaWFsLmZvcnRpZnkuY29tIiwic2NhblByZWZlcmVuY2UiOiJTdGFuZGFyZCIsInNjYW5QcmVmZXJlbmNlSWQiOjF9', entitlementPreference: 'SingleScanOnly', inProgressScanActionType: 'CancelInProgressScan', overrideGlobalConfig: true, personalAccessToken: 'fortify123', remediationScanPreferenceType: 'RemediationScanIfAvailable', srcLocation: '.', tenantId: 'Tech_Mahindra_1053_FMA_647073785', username: 'vinoth_b.e@rediffmail.com'
+					 fodPollResults bsiToken: 'eyJ0ZW5hbnRJZCI6MTAwODYsInRlbmFudENvZGUiOiJUZWNoX01haGluZHJhXzEwNTNfRk1BXzY0NzA3Mzc4NSIsInJlbGVhc2VJZCI6ODUxNDQsInBheWxvYWRUeXBlIjoiQU5BTFlTSVNfUEFZTE9BRCIsImFzc2Vzc21lbnRUeXBlSWQiOjE0LCJ0ZWNobm9sb2d5VHlwZSI6IkpBVkEvSjJFRSIsInRlY2hub2xvZ3lUeXBlSWQiOjcsInRlY2hub2xvZ3lWZXJzaW9uIjoiMS44IiwidGVjaG5vbG9neVZlcnNpb25JZCI6MTIsImF1ZGl0UHJlZmVyZW5jZSI6IkF1dG9tYXRlZCIsImF1ZGl0UHJlZmVyZW5jZUlkIjoyLCJpbmNsdWRlVGhpcmRQYXJ0eSI6ZmFsc2UsImluY2x1ZGVPcGVuU291cmNlQW5hbHlzaXMiOmZhbHNlLCJwb3J0YWxVcmkiOiJodHRwczovL3RyaWFsLmZvcnRpZnkuY29tLyIsImFwaVVyaSI6Imh0dHBzOi8vYXBpLnRyaWFsLmZvcnRpZnkuY29tIiwic2NhblByZWZlcmVuY2UiOiJTdGFuZGFyZCIsInNjYW5QcmVmZXJlbmNlSWQiOjF9', overrideGlobalConfig: true, personalAccessToken: 'fortify123', pollingInterval: 1, tenantId: 'Tech_Mahindra_1053_FMA_647073785', username: 'vinoth_b.e@rediffmail.com'
+					
 					//fodStaticAssessment bsiToken: 'eyJ0ZW5hbnRJZCI6MTAxODgsInRlbmFudENvZGUiOiJ2aXJ0dXNhXzM0Nl9GTUFfNjYzNTQyMzA0IiwicmVsZWFzZUlkIjo4NDE3NiwicGF5bG9hZFR5cGUiOiJBTkFMWVNJU19QQVlMT0FEIiwiYXNzZXNzbWVudFR5cGVJZCI6MTQsInRlY2hub2xvZ3lUeXBlIjoiSkFWQS9KMkVFIiwidGVjaG5vbG9neVR5cGVJZCI6NywidGVjaG5vbG9neVZlcnNpb24iOiIxLjgiLCJ0ZWNobm9sb2d5VmVyc2lvbklkIjoxMiwiYXVkaXRQcmVmZXJlbmNlIjoiQXV0b21hdGVkIiwiYXVkaXRQcmVmZXJlbmNlSWQiOjIsImluY2x1ZGVUaGlyZFBhcnR5IjpmYWxzZSwiaW5jbHVkZU9wZW5Tb3VyY2VBbmFseXNpcyI6ZmFsc2UsInBvcnRhbFVyaSI6Imh0dHBzOi8vdHJpYWwuZm9ydGlmeS5jb20vIiwiYXBpVXJpIjoiaHR0cHM6Ly9hcGkudHJpYWwuZm9ydGlmeS5jb20iLCJzY2FuUHJlZmVyZW5jZSI6IlN0YW5kYXJkIiwic2NhblByZWZlcmVuY2VJZCI6MX0=', entitlementPreference: 'SingleScanOnly', inProgressScanActionType: 'CancelInProgressScan', overrideGlobalConfig: true, personalAccessToken: 'fortifyondemand', remediationScanPreferenceType: 'RemediationScanIfAvailable', srcLocation: '.', tenantId: 'virtusa_346_FMA_663542304', username: 'tonysn@ymail.com'
 					//fodPollResults bsiToken: 'eyJ0ZW5hbnRJZCI6MTAxODgsInRlbmFudENvZGUiOiJ2aXJ0dXNhXzM0Nl9GTUFfNjYzNTQyMzA0IiwicmVsZWFzZUlkIjo4NDE3NiwicGF5bG9hZFR5cGUiOiJBTkFMWVNJU19QQVlMT0FEIiwiYXNzZXNzbWVudFR5cGVJZCI6MTQsInRlY2hub2xvZ3lUeXBlIjoiSkFWQS9KMkVFIiwidGVjaG5vbG9neVR5cGVJZCI6NywidGVjaG5vbG9neVZlcnNpb24iOiIxLjgiLCJ0ZWNobm9sb2d5VmVyc2lvbklkIjoxMiwiYXVkaXRQcmVmZXJlbmNlIjoiQXV0b21hdGVkIiwiYXVkaXRQcmVmZXJlbmNlSWQiOjIsImluY2x1ZGVUaGlyZFBhcnR5IjpmYWxzZSwiaW5jbHVkZU9wZW5Tb3VyY2VBbmFseXNpcyI6ZmFsc2UsInBvcnRhbFVyaSI6Imh0dHBzOi8vdHJpYWwuZm9ydGlmeS5jb20vIiwiYXBpVXJpIjoiaHR0cHM6Ly9hcGkudHJpYWwuZm9ydGlmeS5jb20iLCJzY2FuUHJlZmVyZW5jZSI6IlN0YW5kYXJkIiwic2NhblByZWZlcmVuY2VJZCI6MX0=', overrideGlobalConfig: true, personalAccessToken: 'fortifyondemand', pollingInterval: 1, tenantId: 'virtusa_346_FMA_663542304', username: 'tonysn@ymail.com'
 					
@@ -290,19 +293,6 @@ pipeline {
     tools {
         maven 'maven3.3.9'
         jdk 'openjdk8'
-    }
-    environment {
-        // This can be nexus3 or nexus2
-        NEXUS_VERSION = "nexus3"
-        // This can be http or https
-        NEXUS_PROTOCOL = "http"
-        // Where your Nexus is running
-        NEXUS_URL = "10.62.125.9:8084"
-        //NEXUS_URL = "35.200.184.59:8081"
-        // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "maven-snapshots"
-        // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "nexusadmin"
     }
     
     post {
