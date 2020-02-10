@@ -83,7 +83,17 @@ pipeline {
 					extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'swing']], 
 					submoduleCfg: [], 
 					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/Feedback_swing_test.git']]
+				])		
+				
+				checkout([  
+					$class: 'GitSCM', 
+					branches: [[name: 'refs/heads/master']], 
+					doGenerateSubmoduleConfigurations: false, 
+					extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'api_performance']], 
+					submoduleCfg: [], 
+					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/API_Performance.git']]
 				])
+					
 			} 
 		}
 		stage("API Smoke Test") {
@@ -237,6 +247,20 @@ pipeline {
 						}
 					}''',inputInfoSwitcher:"fileContent",importFilePath: '..\\target\\cucumber-reports\\Desktop-Test\\Cucumber-desktop.json', serverInstance: 'ce436e2b-0499-443c-9431-1864e5d99242'])
 					bat 'del /f target\\cucumber-reports\\Cucumber.json'
+				}
+			}
+		}
+		stage("API performance test") {
+			agent { label 'windows' }
+			steps {
+				dir('api_performance') {
+					bat "del /f testresults.jtl"
+					bat "E:\\apache-jmeter-5.2.1\\bin\\jmeter -n -t Product_Stress_Test.jmx -l testresults.jtl"
+				}
+			}
+			post {
+				always {
+					perfReport 'api_performance\\testresults.jtl'
 				}
 			}
 		}
