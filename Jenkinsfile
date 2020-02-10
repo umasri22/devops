@@ -84,7 +84,7 @@ pipeline {
 					submoduleCfg: [], 
 					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'https://git.virtusa.com/intelligent-automation/Feedback_swing_test.git']]
 				])		
-				
+				echo "checkout api performance"
 				checkout([  
 					$class: 'GitSCM', 
 					branches: [[name: 'refs/heads/master']], 
@@ -255,7 +255,7 @@ pipeline {
 			steps {
 				dir('api_performance') {
 					bat "del /f testresults.jtl"
-					bat "E:\\apache-jmeter-5.2.1\\bin\\jmeter -n -t Product_Stress_Test.jmx -l testresults.jtl"
+					bat "E:\\apache-jmeter-5.2.1\\bin\\jmeter -n -t Product_Stress_Test.jmx -l testresults.jtl -e -o ${WORKSPACE}//api_performance//report"
 				}
 			}
 			post {
