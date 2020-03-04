@@ -7,15 +7,15 @@
     <packaging>war</packaging>
     <version>2.0-SNAPSHOT</version>
     <name>Vaadin Addressbook example</name>	 
-	<properties>
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <vaadin.version>8.0.0.alpha2</vaadin.version>
         <jacoco.version>0.7.5.201505241946</jacoco.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
-    <sonar.jacoco.reportPaths>target/jacoco.exec</sonar.jacoco.reportPaths>
-    <sonar.coverage.jacoco.xmlReportPaths>target/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-            <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.jacoco.reportPaths>target/jacoco.exec</sonar.jacoco.reportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>target/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     </properties>
    <repositories>
         <repository>
