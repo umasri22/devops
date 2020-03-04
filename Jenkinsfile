@@ -8,7 +8,8 @@ pipeline {
 				echo 'checkout scm'
 				checkout scm
 			}
-		}				
+		}	
+		
 		stage("Unit Test") {
 			agent { label 'windows' }
 			steps {
@@ -17,8 +18,26 @@ pipeline {
 				echo 'Unit Test Stage'
 				bat 'mvn test'
 				junit 'target\\surefire-reports\\*.xml'	
+				
 			}
 		}
+		
+		stage("test result")
+		{
+		   	agent { label 'windows' }
+			steps {
+		      step([$class: 'JUnitResultArchiver', testResults: 'target\\surefire-reports\\*.xml', healthScaleFactor: 1.0])
+            publishHTML (target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'coverage',
+                    reportFiles: 'index.html',
+                    reportName: "Junit Report"
+            ])
+			}
+		}
+
 		/*stage('Scanning for Security') {
 			steps {
 				echo 'Code Vulnerability Scan'	
