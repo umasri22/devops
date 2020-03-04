@@ -31,7 +31,7 @@ pipeline {
 				//fodPollResults bsiToken: 'eyJ0ZW5hbnRJZCI6MTAwODYsInRlbmFudENvZGUiOiJUZWNoX01haGluZHJhXzEwNTNfRk1BXzY0NzA3Mzc4NSIsInJlbGVhc2VJZCI6ODUxNDQsInBheWxvYWRUeXBlIjoiQU5BTFlTSVNfUEFZTE9BRCIsImFzc2Vzc21lbnRUeXBlSWQiOjE0LCJ0ZWNobm9sb2d5VHlwZSI6IkpBVkEvSjJFRSIsInRlY2hub2xvZ3lUeXBlSWQiOjcsInRlY2hub2xvZ3lWZXJzaW9uIjoiMS44IiwidGVjaG5vbG9neVZlcnNpb25JZCI6MTIsImF1ZGl0UHJlZmVyZW5jZSI6IkF1dG9tYXRlZCIsImF1ZGl0UHJlZmVyZW5jZUlkIjoyLCJpbmNsdWRlVGhpcmRQYXJ0eSI6ZmFsc2UsImluY2x1ZGVPcGVuU291cmNlQW5hbHlzaXMiOmZhbHNlLCJwb3J0YWxVcmkiOiJodHRwczovL3RyaWFsLmZvcnRpZnkuY29tLyIsImFwaVVyaSI6Imh0dHBzOi8vYXBpLnRyaWFsLmZvcnRpZnkuY29tIiwic2NhblByZWZlcmVuY2UiOiJTdGFuZGFyZCIsInNjYW5QcmVmZXJlbmNlSWQiOjF9', overrideGlobalConfig: true, personalAccessToken: 'fortifyondemand', pollingInterval: 1, tenantId: 'Tech_Mahindra_1053_FMA_647073785', username: 'vinoth_b.e@rediffmail.com'				
 			}
 		} */			
-		stage('Build and Package') {
+		stage('Build and Package (with code quality check)') {
 			steps {
 				echo 'Clean Build'
 				sh "ls"
