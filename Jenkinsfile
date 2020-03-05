@@ -5,7 +5,7 @@ pipeline {
         	stage("Checkout SCM") {
 			steps {
 				cleanWs()
-				echo 'checkout scm '
+				echo 'checkout scm'
 				checkout scm
 			}
 		}	
