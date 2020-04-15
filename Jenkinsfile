@@ -44,7 +44,7 @@ pipeline {
 			agent { label 'windows' }
 			steps {
 				bat 'E:'
-				bat 'cd VagrantBoxes\testvagrant'
+				bat 'cd E:\\\\VagrantBoxes\\testvagrant'
 				bat 'vagrant up'
 			}
 		}
