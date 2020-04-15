@@ -39,6 +39,15 @@ pipeline {
 				sh "mvn sonar:sonar clean compile package -Dtest=\\!TestRunner* -DfailIfNoTests=false -Dsonar.projectKey=addressbook -Dsonar.host.url=http://10.62.125.9:8085/ -Dsonar.login=f16fabd2605044f38e79e4c0e4bc5f73c55dd144" 
 			}
 		}
+		
+		stage('Spin new QA Environment with Tomcat 8') {
+			agent { label 'windows' }
+			steps {
+				bat 'E:'
+				bat 'cd VagrantBoxes\testvagrant'
+				bat 'vagrant up'
+			}
+		}
 
 		stage("XLDeploy Package") {
 			steps {
