@@ -43,8 +43,8 @@ pipeline {
 		stage('Spin new QA Environment with Tomcat 8') {
 			agent { label 'windows' }
 			steps {
-				bat 'E:'
-				bat 'cd E:\\\\VagrantBoxes\\testvagrant'
+				//bat 'E:'
+				//bat 'cd E:\\\\VagrantBoxes\\testvagrant'
 				bat 'vagrant up'
 			}
 		}
