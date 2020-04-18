@@ -98,7 +98,7 @@ Vagrant.configure("2") do |config|
 	. ~/.bashrc
 	export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 	export CATALINA_HOME=/opt/tomcat/apache-tomcat-8.5.54
-        cp /tmp/tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml
+        sudo cp /tmp/tomcat-users.xml /opt/tomcat/conf/tomcat-users.xml
 	sudo $CATALINA_HOME/bin/startup.sh
   SHELL
 end
