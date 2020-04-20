@@ -21,6 +21,8 @@ Vagrant.configure("2") do |config|
 	v.cpus = 1
   end
   config.vm.provision "file", source: "tomcat/tomcat-users.xml", destination: "/tmp/tomcat-users.xml"
+  config.vm.provision "file", source: "target/addressbook.war", destination: "/tmp/addressbook.war"
+	
 
   ##config.vm.provision :shell, path: "scripts/bootstrap.sh"
   config.vm.network :forwarded_port, guest: 8080, host: 8089
@@ -99,6 +101,7 @@ Vagrant.configure("2") do |config|
 	export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 	export CATALINA_HOME=/opt/tomcat/apache-tomcat-8.5.54
         sudo cp /tmp/tomcat-users.xml /opt/tomcat/apache-tomcat-8.5.54/conf/tomcat-users.xml
+        sudo cp /tmp/addressbook.war /opt/tomcat/apache-tomcat-8.5.54/webapps/addressbook.war    
 	sudo $CATALINA_HOME/bin/startup.sh
   SHELL
 end
