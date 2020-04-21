@@ -40,12 +40,25 @@ pipeline {
 			}
 		}
 		
-		stage('Spin new QA Environment with Tomcat 8') {
+		stage('Spin new Developer QA Environment with Tomcat 8') {
 			agent { label 'windows' }
 			steps {
 				//bat 'E:'
 				//bat 'cd E:\\\\VagrantBoxes\\testvagrant'
 				bat 'vagrant up'
+			}
+		}
+		
+		stage("Regression test in Developer QA env - dummy") {
+			steps {
+				sh 'sleep 30'	
+			}
+		}
+		
+		stage('Decommision the Developer QA Environment') {
+			agent { label 'windows' }
+			steps {
+				bat 'vagrant destroy'
 			}
 		}
 
@@ -62,7 +75,7 @@ pipeline {
 			}
 		}  
 	    
-		stage('XLDeploy Deploy') { 
+		stage('XLDeploy Deploy - Promote to QA') { 
 			steps {
 				xldDeploy serverCredentials: 'XLDeployServer', environmentId: 'Environments/QATomcatEnv', packageId: 'Applications/AddressBook/$BUILD_NUMBER.0'
 			}
