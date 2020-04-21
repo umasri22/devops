@@ -58,7 +58,7 @@ pipeline {
 		stage('Decommision the Developer QA Environment') {
 			agent { label 'windows' }
 			steps {
-				bat 'vagrant destroy'
+				bat 'vagrant destroy -f'
 			}
 		}
 
