@@ -40,7 +40,7 @@ pipeline {
 			}
 		}
 		
-		stage('Spin new Developer QA Environment with Tomcat 8') {
+		/*stage('Spin new Developer QA Environment with Tomcat 8') {
 			agent { label 'windows' }
 			steps {
 				//bat 'E:'
@@ -60,7 +60,7 @@ pipeline {
 			steps {
 				bat 'vagrant destroy -f'
 			}
-		}
+		}*/
 
 		stage("XLDeploy Package") {
 			steps {
