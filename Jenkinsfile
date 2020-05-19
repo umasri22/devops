@@ -91,7 +91,7 @@ pipeline {
 					doGenerateSubmoduleConfigurations: false, 
 					extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'web']], 
 					submoduleCfg: [], 
-					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'http://git.virtusa.com/intelligent-automation/Addressbook_web_test.git']]
+					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken1', url: 'http://git.virtusa.com/intelligent-automation/Addressbook_web_test.git']]
 				])
 				echo 'checkout API BDD'
 				checkout([  
@@ -100,7 +100,7 @@ pipeline {
 					doGenerateSubmoduleConfigurations: false, 
 					extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'api']], 
 					submoduleCfg: [], 
-					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'http://git.virtusa.com/intelligent-automation/ProductList_api_test.git']]
+					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken1', url: 'http://git.virtusa.com/intelligent-automation/ProductList_api_test.git']]
 				])
 				echo 'checkout Swing Desktop'
 				checkout([  
@@ -109,7 +109,7 @@ pipeline {
 					doGenerateSubmoduleConfigurations: false, 
 					extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'swing']], 
 					submoduleCfg: [], 
-					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'http://git.virtusa.com/intelligent-automation/Feedback_swing_test.git']]
+					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken1', url: 'http://git.virtusa.com/intelligent-automation/Feedback_swing_test.git']]
 				])		
 				echo "checkout api performance"
 				checkout([  
@@ -118,7 +118,7 @@ pipeline {
 					doGenerateSubmoduleConfigurations: false, 
 					extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'api_performance']], 
 					submoduleCfg: [], 
-					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken', url: 'http://git.virtusa.com/intelligent-automation/API_Performance.git']]
+					userRemoteConfigs: [[credentialsId: 'rakeshgitvirtusatoken1', url: 'http://git.virtusa.com/intelligent-automation/API_Performance.git']]
 				])
 					
 			} 
