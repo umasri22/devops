@@ -8,8 +8,7 @@ pipeline {
 				echo 'checkout scm'
 				checkout scm
 			}
-		}	
-		
+		}
 		stage("Unit Test") {
 			agent { label 'windows' }
 			steps {
