@@ -21,7 +21,6 @@ pipeline {
 				
 			}
 		}
-
 		/*stage('Scanning for Security') {
 			steps {
 				echo 'Code Vulnerability Scan'	
