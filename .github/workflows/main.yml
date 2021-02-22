@@ -27,6 +27,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: CodeQualityCheck
+        run: mvn sonar:sonar -Dsonar.projectKey=addressBook -Dsonar.host.url=${{ secrets.DEV_SONARQUBEURL }} -Dsonar.login=${{ secrets.DEV_SONARQUBETOKEN }}
       - name: Run Insider (SAST)
         uses: insidersec/insider-action@v0
         with:
@@ -34,7 +36,5 @@ jobs:
             # Relative path under $GITHUB_WORKSPACE to use as a target
             # In this example, will use $GITHUB_WORKSPACE/src as a target
             target: src
-      - name: CodeQualityCheck
-        run: mvn sonar:sonar -Dsonar.projectKey=addressBook -Dsonar.host.url=${{ secrets.DEV_SONARQUBEURL }} -Dsonar.login=${{ secrets.DEV_SONARQUBETOKEN }}
       - name: Build with Maven
         run: mvn -B package --file pom.xml
