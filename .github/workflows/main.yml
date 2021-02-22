@@ -28,5 +28,4 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Maven
-        run: mvn sonar:sonar -Dsonar.projectKey=addressBook -Dsonar.host.url=http://35.239.24.225:9000 -Dsonar.login=6af147d68b383a1e9137bc0bf398a6a7d1303fbf
-             mvn -B package --file pom.xml
+        run: mvn sonar:sonar -Dsonar.projectKey=addressBook -Dsonar.host.url=http://35.239.24.225:9000 -Dsonar.login=6af147d68b383a1e9137bc0bf398a6a7d1303fbf -B package --file pom.xml
