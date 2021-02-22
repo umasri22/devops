@@ -27,5 +27,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: CodeQualityCheck
+        run: mvn sonar:sonar -Dsonar.projectKey=addressBook -Dsonar.host.url=${{ secrets.DEV_SONARQUBEURL }} -Dsonar.login=${{ secrets.DEV_SONARQUBETOKEN }}
       - name: Build with Maven
-        run: mvn sonar:sonar -Dsonar.projectKey=addressBook -Dsonar.host.url=${{ secrets.DEV_SONARQUBEURL }} -Dsonar.login=${{ secrets.DEV_SONARQUBETOKEN }} -B package --file pom.xml
+        run: mvn -B package --file pom.xml
