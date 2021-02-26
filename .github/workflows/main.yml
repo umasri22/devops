@@ -58,4 +58,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: rakesh635/addressbook:latest
+          tags: rakesh635/addressbook:$BUILD_NUMBER,rakesh635/addressbook:latest
+
