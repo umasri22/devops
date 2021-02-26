@@ -54,6 +54,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Generate build number
+        id: buildnumber
         uses: einaregilsson/build-number@v3
         with:
           token: ${{secrets.github_token}}        
@@ -64,5 +65,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: rakesh635/addressbook:latest,rakesh635/addressbook:$BUILD_NUMBER
+          tags: rakesh635/addressbook:latest,rakesh635/addressbook:${{ steps.buildnumber.outputs.build_number }}
 
