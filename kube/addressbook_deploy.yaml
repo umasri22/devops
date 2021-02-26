@@ -20,4 +20,6 @@ spec:
       containers:
       - image: rakesh635/addressbook
         name: addressbook
-        resources: {}
+        ports:
+            - containerPort: 8080
+              protocol: TCP
