@@ -1,0 +1,22 @@
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: addressbook
+  name: addressbook
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: addressbook
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: addressbook
+    spec:
+      containers:
+      - image: rakesh635/addressbook
+        name: addressbook
+        resources: {}
