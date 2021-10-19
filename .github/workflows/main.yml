@@ -46,6 +46,8 @@ jobs:
           mvn test --file pom.xml
       - name: Build with Maven
         run: mvn -B package --file pom.xml 
+      - name: Setting
+        run: mvn help:effective-settings
       - name: Publish Package
         run: mvn --settings ~/.m2/settings.xml -B -e -Dmaven.wagon.http.pool=false clean deploy
       - name: Set up QEMU
