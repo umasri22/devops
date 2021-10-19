@@ -24,38 +24,6 @@
         <sonar.coverage.jacoco.xmlReportPaths>target/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     </properties>
-    
-	 
-   <!-- <activeProfiles>
-         <activeProfile>github</activeProfile>
-    </activeProfiles> -->
-    <profiles> 
-       <profile>
-           <id>github</id>
-           <repositories>
-              <repository>
-                 <id>central</id>
-                 <url>https://repo1.maven.org/maven2</url>
-              </repository>
-              <repository>
-                 <id>github</id>
-                 <url>https://maven.pkg.github.com/OWNER/*</url>
-                 <snapshots>
-                    <enabled>true</enabled>
-                 </snapshots>
-              </repository>
-           </repositories>
-        </profile>
-    </profiles>
-
-    <servers>
-       <server>
-           <id>github</id>
-           <username>90daysTokenGitHub</username>
-           <password>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</password>
-       </server>
-    </servers>
-
 
     <repositories>
         <repository>
