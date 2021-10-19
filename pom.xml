@@ -28,8 +28,8 @@
 	 
    <!-- <activeProfiles>
          <activeProfile>github</activeProfile>
-    </activeProfiles>
-    <profiles> -->
+    </activeProfiles> -->
+    <profiles> 
        <profile>
            <id>github</id>
            <repositories>
