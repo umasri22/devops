@@ -35,7 +35,7 @@ jobs:
         uses: whelk-io/maven-settings-xml-action@v4
         with:
           repositories: '[{ "id": "central", "url": "https://repo1.maven.org/maven2" },{ "id": "github", "url": "https://maven.pkg.github.com/rakesh635/*" }]'
-          servers: '[{ "id": "github", "username": "rakesh635", "password": "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" }]'
+          servers: '[{ "id": "github", "username": "rakesh635", "password": "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" }]'
       #- name: CodeQualityCheck
       #  run: mvn sonar:sonar -Dsonar.projectKey=addressBook -Dsonar.host.url=${{ secrets.DEV_SONARQUBEURL }} -Dsonar.login=${{ secrets.DEV_SONARQUBETOKEN }}
       - name: Run Insider (SAST)
