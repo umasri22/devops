@@ -52,7 +52,7 @@ jobs:
       - name: Run Insider (SAST)
         uses: insidersec/insider-action@v0
         with:
-            technology: javascript
+            technology: java
             # Relative path under $GITHUB_WORKSPACE to use as a target
             # In this example, will use $GITHUB_WORKSPACE/src as a target
             target: src
@@ -109,7 +109,7 @@ jobs:
         id: buildnumber
         uses: einaregilsson/build-number@v3
         with:
-          token: ${{secrets.github_token}}        
+          token: ${{secrets.TOKEN_GITHUB}}        
       - name: Print new build number
         run: echo "Build number is $BUILD_NUMBER"
       - name: Build and push
