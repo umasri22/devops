@@ -26,10 +26,10 @@
     </properties>
     
 	 
-    <activeProfiles>
+   <!-- <activeProfiles>
          <activeProfile>github</activeProfile>
     </activeProfiles>
-    <profiles>
+    <profiles> -->
        <profile>
            <id>github</id>
            <repositories>
