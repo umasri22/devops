@@ -1,6 +1,6 @@
 steps:
  - name: gcr.io/$PROJECT_ID/increment_build_number
-    id: 'build-number'
+    id: build-number
     waitFor:
       - '-'
     args: [ 'gs://${_CONFIG_BUCKET}/${_BUILD_NAME}', '--major', '0', '--minor', '1' ]
