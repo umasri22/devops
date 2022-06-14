@@ -1,4 +1,9 @@
 steps:
+ - name: 'gcr.io/$PROJECT_ID/increment_build_number'
+    id: 'build-number'
+    waitFor:
+      - '-'
+    args: [ 'gs://${_CONFIG_BUCKET}/${_BUILD_NAME}', '--major', '0', '--minor', '1' ]
   - name: maven:3-jdk-8
     entrypoint: mvn
     args: ["test"]
@@ -6,5 +11,13 @@ steps:
     entrypoint: mvn
     args: ["package", "-Dmaven.test.skip=true"]
   - name: gcr.io/cloud-builders/docker
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/addressbook", "--build-arg=JAR_FILE=target/addressbook.jar", "."]
+    id: 'build-service'
+    waitFor:
+      - 'build-number'
+    entrypoint: 'bash'
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/addressbook:$build_num", "--build-arg=JAR_FILE=target/addressbook.jar", "."]
 images: ["gcr.io/$PROJECT_ID/addressbook"]
+
+substitutions:
+  _CONFIG_BUCKET: 'incrementbuild'
+  _BUILD_NAME: 'my-service'
