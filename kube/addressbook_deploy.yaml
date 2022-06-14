@@ -18,7 +18,8 @@ spec:
         app: addressbook
     spec:
       containers:
-      - image: rakesh635/addressbook
+      - image: gcr.io/spatial-subject-344813/addressbook:latest
+#      - image: rakesh635/addressbook
         name: addressbook
         ports:
             - containerPort: 8080
