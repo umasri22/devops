@@ -14,9 +14,15 @@ steps:
     id: build-service
     waitFor:
       - build-number
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/addressbook:$build_num", "--build-arg=JAR_FILE=target/addressbook.jar", "."]
+#    args: ["build", "-t", "gcr.io/$PROJECT_ID/addressbook:$build_num", "--build-arg=JAR_FILE=target/addressbook.jar", "."]
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        source .buildenv &&
+        docker build -t gcr.io/$PROJECT_ID/addressbook:latest -t gcr.io/$PROJECT_ID/addressbook:$build_num .
 images: ["gcr.io/$PROJECT_ID/addressbook"]
 
 substitutions:
   _CONFIG_BUCKET: 'incrementbuild'
-  _BUILD_NAME: 'my-service'
+  _BUILD_NAME: 'addressbook'
