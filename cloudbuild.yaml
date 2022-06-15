@@ -48,6 +48,8 @@ steps:
       - '-c'
       - |
         set -x && \
+        git config --global user.email "rakesh635@gmail.com"
+        git config --global user.name "rakesh635"
         git add . && \
         git commit -m "Deploying image gcr.io/$PROJECT_ID/addressbook:${build_num}
         Built from commit ${COMMIT_SHA} of repository addressbook
