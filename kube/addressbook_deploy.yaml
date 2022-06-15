@@ -18,7 +18,7 @@ spec:
         app: addressbook
     spec:
       containers:
-      - image: gcr.io/spatial-subject-344813/addressbook:latest
+      - image: gcr.io/spatial-subject-344813/addressbook:VERSIONNUMB
 #      - image: rakesh635/addressbook
         name: addressbook
         ports:
