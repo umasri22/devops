@@ -19,12 +19,9 @@ steps:
     args:
       - -c
       - |
-        echo "hi"
-        echo $build_num
-        echo "bye"
-        cat kube/addressbook_deploy.yaml
+        source .buildenv &&
         sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
-        cat kube/addressbook_deploy.yaml        
+        cat kube/addressbook_deploy.yaml                 
             
   - name: gcr.io/cloud-builders/docker
     id: build-service
