@@ -23,6 +23,19 @@ steps:
         docker build -t gcr.io/$PROJECT_ID/addressbook:latest -t gcr.io/$PROJECT_ID/addressbook:$build_num .
         pwd
         ls -ltrha
+        
+  # modify the manifest file
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: Generate manifest
+    entrypoint: /bin/sh
+    args:
+      - '-c'
+      - |
+        echo $build_num
+        cat kube/addressbook_deploy.yaml
+        sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
+        cat kube/addressbook_deploy.yaml        
+        
   - name: 'gcr.io/cloud-builders/git'
     secretEnv: ['SSH_KEY']
     entrypoint: 'bash'
@@ -46,16 +59,6 @@ steps:
     - name: 'ssh'
       path: /root/.ssh
       
-  # modify the manifest file
-  - name: 'gcr.io/cloud-builders/gcloud'
-    id: Generate manifest
-    entrypoint: /bin/sh
-    args:
-      - '-c'
-      - |
-        cat kube/addressbook_deploy.yaml
-        sed -i "s/VERSIONNUMB/"$(build_num)"/g" kube/addressbook_deploy.yaml
-        cat kube/addressbook_deploy.yaml
   
   # This step pushes the manifest back to hello-cloudbuild-env
   - name: 'gcr.io/cloud-builders/gcloud'
