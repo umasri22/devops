@@ -32,9 +32,9 @@ steps:
     id: Generate manifest
     waitFor:
       - build-number
-    entrypoint: /bin/sh
+    entrypoint: 'bash'
     args:
-      - '-c'
+      - -c
       - |
         echo "hi"
         echo $build_num
