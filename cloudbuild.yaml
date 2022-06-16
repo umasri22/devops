@@ -55,6 +55,7 @@ steps:
     args:
       - -c
       - |
+        cd ..
         echo "hi"
         pwd
         ls -ltrha
