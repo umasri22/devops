@@ -22,7 +22,9 @@ steps:
         source .buildenv &&
         docker build -t gcr.io/$PROJECT_ID/addressbook:latest -t gcr.io/$PROJECT_ID/addressbook:$build_num .
         pwd
+        echo "hi"
         echo $build_num
+        echo "bye"
         ls -ltrha
         
   # modify the manifest file
