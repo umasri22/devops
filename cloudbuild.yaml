@@ -54,16 +54,7 @@ steps:
       - '-c'
       - |
         cat kube/addressbook_deploy.yaml
-        sed "s/VERSIONNUMB/${build_num}/g" kube/addressbook_deploy.yaml
-        cat kube/addressbook_deploy.yaml
-        
-  # view the manifest file
-  - name: 'gcr.io/cloud-builders/gcloud'
-    id: view manifest
-    entrypoint: /bin/sh
-    args:
-      - '-c'
-      - |
+        sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
         cat kube/addressbook_deploy.yaml
   
   # This step pushes the manifest back to hello-cloudbuild-env
