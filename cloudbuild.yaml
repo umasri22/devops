@@ -45,6 +45,16 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
+      
+  # modify the manifest file
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: Generate manifest
+    entrypoint: /bin/sh
+    args:
+      - '-c'
+      - |
+        sed "s/VERSIONNUMB/${build_num}/g" > kube/addressbook_deploy.yaml
+        cat kube/addressbook_deploy.yaml
   
   # This step pushes the manifest back to hello-cloudbuild-env
   - name: 'gcr.io/cloud-builders/gcloud'
