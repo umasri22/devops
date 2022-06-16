@@ -10,6 +10,22 @@ steps:
   - name: maven:3-jdk-8
     entrypoint: mvn
     args: ["package", "-Dmaven.test.skip=true"]
+  # modify the manifest file
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: Generate manifest
+    waitFor:
+      - build-number
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        echo "hi"
+        echo $build_num
+        echo "bye"
+        cat kube/addressbook_deploy.yaml
+        sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
+        cat kube/addressbook_deploy.yaml        
+            
   - name: gcr.io/cloud-builders/docker
     id: build-service
     waitFor:
@@ -26,22 +42,6 @@ steps:
         echo $build_num
         echo "bye"
         ls -ltrha
-        
-  # modify the manifest file
-  - name: 'gcr.io/cloud-builders/gcloud'
-    id: Generate manifest
-    waitFor:
-      - build-number
-    entrypoint: 'bash'
-    args:
-      - -c
-      - |
-        echo "hi"
-        echo $build_num
-        echo "bye"
-        cat kube/addressbook_deploy.yaml
-        sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
-        cat kube/addressbook_deploy.yaml        
         
   - name: 'gcr.io/cloud-builders/git'
     secretEnv: ['SSH_KEY']
