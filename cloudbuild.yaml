@@ -54,7 +54,7 @@ steps:
       - '-c'
       - |
         cat kube/addressbook_deploy.yaml
-        sed "s/VERSIONNUMB/${build_num}/g" > kube/addressbook_deploy.yaml
+        sed "s/VERSIONNUMB/${build_num}/g" kube/addressbook_deploy.yaml
         cat kube/addressbook_deploy.yaml
         
   # view the manifest file
