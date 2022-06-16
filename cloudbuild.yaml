@@ -30,11 +30,15 @@ steps:
   # modify the manifest file
   - name: 'gcr.io/cloud-builders/gcloud'
     id: Generate manifest
+    waitFor:
+      - build-number
     entrypoint: /bin/sh
     args:
       - '-c'
       - |
+        echo "hi"
         echo $build_num
+        echo "bye"
         cat kube/addressbook_deploy.yaml
         sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
         cat kube/addressbook_deploy.yaml        
