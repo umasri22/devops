@@ -11,7 +11,7 @@ steps:
     entrypoint: mvn
     args: ["package", "-Dmaven.test.skip=true"]
   # modify the manifest file
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: gcr.io/cloud-builders/docker
     id: Generate manifest
     waitFor:
       - build-number
