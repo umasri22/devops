@@ -22,11 +22,6 @@ steps:
       - |
         source .buildenv &&
         docker build -t gcr.io/$PROJECT_ID/addressbook:latest -t gcr.io/$PROJECT_ID/addressbook:$build_num .
-        pwd
-        echo "hi"
-        echo $build_num
-        echo "bye"
-        ls -ltrha
         
   - name: 'gcr.io/cloud-builders/git'
     secretEnv: ['SSH_KEY']
@@ -60,6 +55,10 @@ steps:
     args:
       - -c
       - |
+        echo "hi"
+        pwd
+        ls -ltrha
+        echo "bye"
         cd devops_manifest
         source .buildenv &&
         sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
