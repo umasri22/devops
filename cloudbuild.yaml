@@ -46,7 +46,7 @@ steps:
       path: /root/.ssh
 
   # Clone the repository
-  - name: 'gcr.io/cloud-builders/git'
+  - name: 'gcr.io/$PROJECT_ID/git'
     id: clone-manifestrepo
     waitFor:
       - sshkey-host
@@ -59,8 +59,8 @@ steps:
       path: /root/.ssh
       
   # modify the manifest file
-  - name: gcr.io/cloud-builders/docker
-    id: generate-manifest
+  - name: gcr.io/$PROJECT_ID/git
+    id: generate-manifest123
     waitFor:
       - clone-manifestrepo
     entrypoint: 'bash'
@@ -76,6 +76,25 @@ steps:
         source .buildenv &&
         sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
         cat kube/addressbook_deploy.yaml   
+        
+  # modify the manifest file
+  - name: gcr.io/$PROJECT_ID/docker
+    id: generate-manifest
+    waitFor:
+      - clone-manifestrepo
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        cd ..
+        echo "hi"
+        pwd
+        ls -ltrha
+        echo "bye"
+        cd devops_manifest
+        source .buildenv &&
+        sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
+        cat kube/addressbook_deploy.yaml  
       
   
   # This step pushes the manifest back to hello-cloudbuild-env
