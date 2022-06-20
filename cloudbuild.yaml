@@ -97,5 +97,5 @@ substitutions:
 
 availableSecrets:
   secretManager:
-  - versionName: projects/107069279773/secrets/github_rakesh635/versions/latest
+  - versionName: projects/287459854686/secrets/github_rakesh635/versions/latest
     env: 'SSH_KEY'
