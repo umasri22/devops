@@ -60,27 +60,6 @@ steps:
       
   # modify the manifest file
   - name: gcr.io/cloud-builders/git
-    id: generate-manifest123
-    waitFor:
-      - clone-manifestrepo
-    entrypoint: 'bash'
-    args:
-      - -c
-      - |
-        cd ..
-        echo "hi"
-        pwd
-        ls -ltrha
-        echo "bye"
-        cd workspace
-        ls -ltrha
-        cd devops_manifest
-        source .buildenv &&
-        sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
-        cat kube/addressbook_deploy.yaml   
-        
-  # modify the manifest file
-  - name: gcr.io/cloud-builders/docker
     id: generate-manifest
     waitFor:
       - clone-manifestrepo
@@ -88,16 +67,10 @@ steps:
     args:
       - -c
       - |
-        cd ..
-        echo "hi"
-        pwd
-        ls -ltrha
-        echo "bye"
         cd devops_manifest
         source .buildenv &&
         sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
-        cat kube/addressbook_deploy.yaml  
-      
+        cat kube/addressbook_deploy.yaml        
   
   # This step pushes the manifest back to hello-cloudbuild-env
   - name: 'gcr.io/cloud-builders/gcloud'
