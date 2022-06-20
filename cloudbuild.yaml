@@ -21,7 +21,7 @@ steps:
       - -c
       - |
         source .buildenv &&
-        docker build -t gcr.io/$PROJECT_ID/addressbook:latest -t gcr.io/$PROJECT_ID/addressbook:$build_num .
+        docker build -t gcr.io/$PROJECT_ID/addressbook1:latest -t gcr.io/$PROJECT_ID/addressbook1:$build_num .
         
   - name: 'gcr.io/cloud-builders/git'
     secretEnv: ['SSH_KEY']
