@@ -72,6 +72,8 @@ steps:
         pwd
         ls -ltrha
         echo "bye"
+        cd workspace
+        ls -ltrha
         cd devops_manifest
         source .buildenv &&
         sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
