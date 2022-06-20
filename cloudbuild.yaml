@@ -26,6 +26,9 @@ steps:
   - name: 'gcr.io/cloud-builders/git'
     secretEnv: ['SSH_KEY']
     entrypoint: 'bash'
+    id: sshkey-host
+    waitFor:
+      - build-service
     args:
     - -c
     - |
@@ -38,6 +41,9 @@ steps:
 
   # Clone the repository
   - name: 'gcr.io/cloud-builders/git'
+    id: clone-manifestrepo
+    waitFor:
+      - sshkey-host
     args:
     - clone
     - --recurse-submodules
@@ -48,9 +54,9 @@ steps:
       
   # modify the manifest file
   - name: gcr.io/cloud-builders/docker
-    id: Generate manifest
+    id: generate-manifest
     waitFor:
-      - build-number
+      - clone-manifestrepo
     entrypoint: 'bash'
     args:
       - -c
@@ -68,7 +74,9 @@ steps:
   
   # This step pushes the manifest back to hello-cloudbuild-env
   - name: 'gcr.io/cloud-builders/gcloud'
-    id: Push manifest
+    id: push-manifest
+    waitFor:
+      - generate-manifest
     entrypoint: /bin/sh
     args:
       - '-c'
