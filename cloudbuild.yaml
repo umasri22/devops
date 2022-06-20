@@ -46,7 +46,7 @@ steps:
       path: /root/.ssh
 
   # Clone the repository
-  - name: 'gcr.io/$PROJECT_ID/git'
+  - name: 'gcr.io/cloud-builders/git'
     id: clone-manifestrepo
     waitFor:
       - sshkey-host
@@ -59,7 +59,7 @@ steps:
       path: /root/.ssh
       
   # modify the manifest file
-  - name: gcr.io/$PROJECT_ID/git
+  - name: gcr.io/cloud-builders/git
     id: generate-manifest123
     waitFor:
       - clone-manifestrepo
@@ -78,7 +78,7 @@ steps:
         cat kube/addressbook_deploy.yaml   
         
   # modify the manifest file
-  - name: gcr.io/$PROJECT_ID/docker
+  - name: gcr.io/cloud-builders/docker
     id: generate-manifest
     waitFor:
       - clone-manifestrepo
