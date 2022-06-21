@@ -70,7 +70,7 @@ steps:
       - -c
       - |
         source .buildenv &&
-        sed -i "/addressbook:/c/\\      - image: gcr.io/spatial-subject-344813/addressbook:${build_num}" devops_manifest/kube/addressbook_deploy.yaml
+        sed -i "/addressbook:/c\\      - image: gcr.io/spatial-subject-344813/addressbook:${build_num}" devops_manifest/kube/addressbook_deploy.yaml
         cat devops_manifest/kube/addressbook_deploy.yaml        
   
   # This step pushes the manifest back to hello-cloudbuild-env
