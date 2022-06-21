@@ -41,6 +41,9 @@ steps:
       echo "hi123"
       echo "$$SSH_KEY" >> /root/.ssh/id_rsa
       echo "hi321"
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
 
   # Clone the repository
   - name: 'gcr.io/cloud-builders/git'
