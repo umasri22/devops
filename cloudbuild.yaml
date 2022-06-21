@@ -38,12 +38,9 @@ steps:
     args:
     - -c
     - |
+      echo "hi123"
       echo "$$SSH_KEY" >> /root/.ssh/id_rsa
-      chmod 400 /root/.ssh/id_rsa
-      cp known_hosts.github /root/.ssh/known_hosts
-    volumes:
-    - name: 'ssh'
-      path: /root/.ssh
+      echo "hi321"
 
   # Clone the repository
   - name: 'gcr.io/cloud-builders/git'
