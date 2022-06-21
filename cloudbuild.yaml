@@ -68,9 +68,9 @@ steps:
       - -c
       - |
         cd devops_manifest
-        echo '----> '.$build_num.' <----'
+        echo '----> '.${build_num}.' <----'
         source .buildenv &&
-        sed -i "s/VERSIONNUMB/$build_num/g" kube/addressbook_deploy.yaml
+        sed -i "s/VERSIONNUMB/${build_num}/g" kube/addressbook_deploy.yaml
         cat kube/addressbook_deploy.yaml        
   
   # This step pushes the manifest back to hello-cloudbuild-env
