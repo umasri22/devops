@@ -76,7 +76,7 @@ steps:
     id: push-manifest
     waitFor:
       - generate-manifest
-    entrypoint: /bin/sh
+    entrypoint: 'bash'
     args:
       - '-c'
       - |
