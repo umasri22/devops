@@ -89,7 +89,7 @@ steps:
         git commit -m "Deploying image gcr.io/$PROJECT_ID/addressbook:${build_num}
         Built from commit ${COMMIT_SHA} of repository addressbook
         Author: $(git log --format='%an <%ae>' -n 1 HEAD)" && \
-        git push origin candidate 
+        git push origin 
 images: ["gcr.io/$PROJECT_ID/addressbook"]
 
 substitutions:
