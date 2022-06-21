@@ -38,9 +38,9 @@ steps:
     args:
     - -c
     - |
-      echo "hi123"
       echo "$$SSH_KEY" >> /root/.ssh/id_rsa
-      echo "hi321"
+      chmod 400 /root/.ssh/id_rsa
+      cp known_hosts.github /root/.ssh/known_hosts
     volumes:
     - name: 'ssh'
       path: /root/.ssh
@@ -90,6 +90,9 @@ steps:
         Built from commit ${COMMIT_SHA} of repository addressbook
         Author: $(git log --format='%an <%ae>' -n 1 HEAD)" && \
         git push origin master
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
 images: ["gcr.io/$PROJECT_ID/addressbook"]
 
 substitutions:
