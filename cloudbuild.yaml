@@ -61,16 +61,16 @@ steps:
   # modify the manifest file
   - name: 'gcr.io/cloud-builders/gcloud'
     id: Generate manifest
-     waitFor:
+    waitFor:
       - clone-manifestrepo
       - build-number
     entrypoint: /bin/sh
     args:
-    - '-c'
-    - |
-       source .buildenv &&
-       sed -i "s/VERSIONNUMB/${build_num}/g" devops_manifest/kube/addressbook_deploy.yaml
-       cat devops_manifest/kube/addressbook_deploy.yaml
+      - '-c'
+      - |
+        source .buildenv &&
+        sed -i "s/VERSIONNUMB/${build_num}/g" devops_manifest/kube/addressbook_deploy.yaml
+        cat devops_manifest/kube/addressbook_deploy.yaml
        
   - name: gcr.io/cloud-builders/git
     id: generate-manifest
