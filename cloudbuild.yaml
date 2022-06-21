@@ -96,7 +96,7 @@ steps:
 images: ["gcr.io/$PROJECT_ID/addressbook"]
 
 substitutions:
-  _CONFIG_BUCKET: 'incrementbuild'
+  _CONFIG_BUCKET: 'addressbook1'
   _BUILD_NAME: 'addressbook'
 
 availableSecrets:
