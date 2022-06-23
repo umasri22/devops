@@ -95,7 +95,7 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
-images: ["gcr.io/$PROJECT_ID/addressbook"]
+###images: ["gcr.io/$PROJECT_ID/addressbook"]
 
 substitutions:
   _CONFIG_BUCKET: 'addressbook1'
