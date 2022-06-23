@@ -24,7 +24,7 @@ import com.vaadin.v7.ui.TextField;
  * By default, a new UI instance is automatically created when the page is loaded. To reuse
  * the same instance, add @PreserveOnRefresh.
  */
-@Title("Addressbook")
+@Title("Addressbook POC")
 @Theme("valo")
 @Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
 public class AddressbookUI extends UI {
@@ -38,7 +38,7 @@ public class AddressbookUI extends UI {
      */
     TextField filter = new TextField();
     Grid contactList = new Grid();
-    Button newContact = new Button("Add New Contact123");
+    Button newContact = new Button("Add New Contact");
 
     // ContactForm is an example of a custom component class
     ContactForm contactForm = new ContactForm();
