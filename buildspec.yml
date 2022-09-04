@@ -12,7 +12,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR and Docker Hub 
-      - docker login --username $DOCKERHUB_UNAME --password $DOCKERHUB_PASS
+      - docker login --username $DOCKERHUB_UNAME --password-stdin $DOCKERHUB_PASS
   build:
     commands:
       - echo Build started on `date`
