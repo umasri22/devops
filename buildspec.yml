@@ -6,9 +6,12 @@ env:
     DOCKERHUB_UNAME: "dockerhubkey1:DOCKERHUB_UNAME"
 
 phases:
-#  install:
-#    runtime-versions:
-#      java: corretto8
+  install:
+    runtime-versions:
+      java: corretto8
+    commands:
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
   pre_build:
     commands:
       - echo Logging in to Amazon ECR and Docker Hub 
