@@ -18,12 +18,12 @@ phases:
       - echo Build started on `date`
       - mvn test 
       - mvn package
-      - docker build -t testaddressbook:latest .
+      - docker build -t rakesh635/testaddressbook:latest .
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker login --username $DOCKERHUB_UNAME --password $DOCKERHUB_PASS
-      - docker push testaddressbook:latest
+#      - docker login --username $DOCKERHUB_UNAME --password $DOCKERHUB_PASS
+      - docker push rakesh635/testaddressbook:latest
 artifacts:
   files:
     - target/addressbook.jar
