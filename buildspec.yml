@@ -1,5 +1,10 @@
 version: 0.2
 
+env:
+  secrets-manager:
+    DOCKERHUB_PASS: "/dockerhubkey/DOCKERHUB_PASS"
+    DOCKERHUB_UNAME: "/dockerhubkey/DOCKERHUB_UNAME"
+
 phases:
   install:
     runtime-versions:
@@ -8,10 +13,13 @@ phases:
     commands:
       - echo Build started on `date`
       - mvn test 
+      - mvn package
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
+      - docker build -t testaddressbook:latest
   post_build:
     commands:
       - echo Build completed on `date`
-      - mvn package
+      - docker push testaddressbook:latest
 artifacts:
   files:
     - target/addressbook.jar
