@@ -18,7 +18,7 @@ phases:
       - echo Build started on `date`
       - mvn test 
       - mvn package
-      - docker build -t testaddressbook:latest
+      - docker build -t testaddressbook:latest .
   post_build:
     commands:
       - echo Build completed on `date`
