@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   secrets-manager:
-    DOCKERHUB_PASS: "/dockerhubkey/DOCKERHUB_PASS"
-    DOCKERHUB_UNAME: "/dockerhubkey/DOCKERHUB_UNAME"
+    DOCKERHUB_PASS: "dockerhubkey:DOCKERHUB_PASS"
+    DOCKERHUB_UNAME: "dockerhubkey:DOCKERHUB_UNAME"
 
 phases:
   install:
