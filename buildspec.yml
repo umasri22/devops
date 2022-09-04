@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   secrets-manager:
-    DOCKERHUB_PASS: "dockerhubkey:DOCKERHUB_PASS"
-    DOCKERHUB_UNAME: "dockerhubkey:DOCKERHUB_UNAME"
+    DOCKERHUB_PASS: "dockerhubkey1:DOCKERHUB_PASS"
+    DOCKERHUB_UNAME: "dockerhubkey1:DOCKERHUB_UNAME"
 
 phases:
 #  install:
@@ -12,7 +12,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR and Docker Hub 
-      - docker login --username $DOCKERHUB_UNAME --password-stdin $DOCKERHUB_PASS
+      - docker login --username $DOCKERHUB_UNAME --password $DOCKERHUB_PASS
   build:
     commands:
       - echo Build started on `date`
