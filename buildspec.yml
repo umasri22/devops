@@ -6,15 +6,18 @@ env:
     DOCKERHUB_UNAME: "dockerhubkey:DOCKERHUB_UNAME"
 
 phases:
-  install:
-    runtime-versions:
-      java: corretto8
+#  install:
+#    runtime-versions:
+#      java: corretto8
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR and Docker Hub 
+      - docker login --username $DOCKERHUB_UNAME --password $DOCKERHUB_PASS
   build:
     commands:
       - echo Build started on `date`
       - mvn test 
       - mvn package
-      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
       - docker build -t testaddressbook:latest
   post_build:
     commands:
