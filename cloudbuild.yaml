@@ -55,7 +55,7 @@ steps:
     args:
     - clone
     - --recurse-submodules
-    - git@github.com:rakesh635/devops_manifest
+    - git@github.com:umasri22/devops_manifest
     volumes:
     - name: 'ssh'
       path: /root/.ssh
@@ -73,7 +73,7 @@ steps:
         sed -i "/addressbook1:/c\\      - image: gcr.io/$PROJECT_ID/addressbook1:${build_num}" devops_manifest/kube/addressbook_deploy.yaml
         cat devops_manifest/kube/addressbook_deploy.yaml        
   
-  # This step pushes the manifest back to hello-cloudbuild-env
+  # This step pushes the manifest back to addressbook
   - name: 'gcr.io/cloud-builders/gcloud'
     id: push-manifest
     waitFor:
@@ -84,8 +84,8 @@ steps:
       - |
         cd devops_manifest
         set -x && \
-        git config --global user.email "rakesh635@gmail.com"
-        git config --global user.name "rakesh635"
+        git config --global user.email "umasricapgemini@gmail.com"
+        git config --global user.name "umasri22"
         source ../.buildenv && \
         git add . && \
         git commit -m "Deploying image gcr.io/$PROJECT_ID/addressbook:${build_num}
