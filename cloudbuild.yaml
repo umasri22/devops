@@ -21,7 +21,7 @@ steps:
     id: build-service
     waitFor:
       - mvnpackage
-#    args: ["build", "-t", "gcr.io/$PROJECT_ID/addressbook:$build_num", "--build-arg=JAR_FILE=target/addressbook.jar", "."]
+#    args: ["build", "-t", "gcr.io/$PROJECT_ID/addressbook:$build_num", "--build-arg=JAR_FILE=target/addressbook.jar", "."]   -
     entrypoint: 'bash'
     args:
       - -c
